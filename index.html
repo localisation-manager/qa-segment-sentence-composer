@@ -798,9 +798,10 @@
 }
 
 
-/* ── Layout ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── button: allow text wrapping ── */
+.ion-btn { white-space: normal; text-align: center; }
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--ion-font-body);
   background: var(--background-page);
@@ -810,7 +811,6 @@ body {
   flex-direction: column;
 }
 
-/* ── Top bar ─────────────────────────────────────────── */
 .topbar {
   background: var(--background-base);
   border-bottom: 1px solid var(--border-neutral-faded);
@@ -821,19 +821,10 @@ body {
   gap: var(--spacing-200);
   flex-shrink: 0;
 }
-.topbar-title {
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-semibold);
-  color: var(--foreground-neutral);
-}
+.topbar-title { font-size: var(--font-size-s); font-weight: var(--font-weight-semibold); }
 .topbar-sep { color: var(--border-neutral-faded); }
-.topbar-sub {
-  font-size: var(--font-size-xs);
-  color: var(--foreground-neutral-faded);
-  font-family: var(--ion-font-mono);
-}
+.topbar-sub { font-size: var(--font-size-xs); color: var(--foreground-neutral-faded); font-family: var(--ion-font-mono); }
 
-/* ── Main grid ───────────────────────────────────────── */
 .layout {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -842,15 +833,14 @@ body {
   height: calc(100vh - var(--size-700));
 }
 
-/* ── Sidebar ─────────────────────────────────────────── */
 .sidebar {
   background: var(--background-base);
   border-right: 1px solid var(--border-neutral-faded);
   overflow-y: auto;
+  padding: var(--spacing-150) var(--spacing-100);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-100);
-  padding: var(--spacing-150) var(--spacing-100);
+  gap: var(--spacing-50);
 }
 .sidebar-section-label {
   font-size: var(--font-size-xs);
@@ -863,18 +853,11 @@ body {
 .sidebar-divider {
   height: 1px;
   background: var(--border-neutral-faded);
-  margin: var(--spacing-100) var(--spacing-150);
+  margin: var(--spacing-75) var(--spacing-150);
 }
 
-/* ── Main content ────────────────────────────────────── */
-.content {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-0);
-}
+.content { overflow-y: auto; display: flex; flex-direction: column; }
 
-/* ── Sentence bar ────────────────────────────────────── */
 .sentence-bar {
   background: var(--background-elevated);
   border-bottom: 1px solid var(--border-neutral-faded);
@@ -886,11 +869,6 @@ body {
   top: 0;
   z-index: 10;
 }
-.sentence-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-100);
-}
 .sentence-label {
   font-size: var(--font-size-xs);
   color: var(--foreground-neutral-faded);
@@ -898,11 +876,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+.sentence-meta { display: flex; align-items: center; gap: var(--spacing-100); }
 .sentence-text {
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-m);
-  color: var(--foreground-neutral);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -935,7 +913,6 @@ body {
   border-radius: var(--radius-xs);
 }
 
-/* ── Options panel (left of right area) ─────────────── */
 .right-area {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -959,11 +936,7 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.option-values {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-25);
-}
+.option-values { display: flex; flex-direction: column; gap: var(--spacing-25); }
 .option-btn {
   appearance: none;
   background: transparent;
@@ -979,12 +952,8 @@ body {
   line-height: var(--line-height-xs);
 }
 .option-btn:hover { background: var(--background-base-hover); color: var(--foreground-neutral); }
-.option-btn.selected {
-  color: var(--foreground-neutral);
-  font-weight: var(--font-weight-medium);
-}
+.option-btn.selected { color: var(--foreground-neutral); font-weight: var(--font-weight-medium); }
 
-/* ── String breakdown ────────────────────────────────── */
 .breakdown {
   overflow-y: auto;
   padding: var(--spacing-300);
@@ -992,21 +961,15 @@ body {
   flex-direction: column;
   gap: var(--spacing-150);
 }
-.breakdown-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--spacing-100);
-}
 .breakdown-title {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   color: var(--foreground-neutral-faded);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  margin-bottom: var(--spacing-50);
 }
 
-/* ── String card (ion-panel based) ──────────────────── */
 .string-card {
   background: var(--background-elevated);
   border: 1px solid var(--border-neutral-faded);
@@ -1025,37 +988,19 @@ body {
   gap: var(--spacing-75);
   min-width: 0;
 }
-.string-card-var {
-  font-size: var(--font-size-xs);
-  font-family: var(--ion-font-mono);
-  color: var(--foreground-neutral-faded);
-}
-.string-card-value {
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-medium);
-  color: var(--foreground-neutral);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.string-card-value.blank {
-  color: var(--foreground-ghost);
-  font-style: italic;
-  font-weight: var(--font-weight-regular);
-}
-.string-card-note {
-  font-size: var(--font-size-xs);
-  color: var(--foreground-ghost);
-  line-height: var(--line-height-xs);
-}
+.string-card-var { font-size: var(--font-size-xs); font-family: var(--ion-font-mono); color: var(--foreground-neutral-faded); }
+.string-card-value { font-size: var(--font-size-s); font-weight: var(--font-weight-medium); }
+.string-card-value.blank { color: var(--foreground-ghost); font-style: italic; font-weight: var(--font-weight-regular); }
+.string-card-note { font-size: var(--font-size-xs); color: var(--foreground-ghost); line-height: var(--line-height-xs); }
 .string-card-actions {
   padding: var(--spacing-150) var(--spacing-200);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: center;
   gap: var(--spacing-75);
   flex-shrink: 0;
+  width: 120px;
 }
 </style>
 </head>
@@ -1068,29 +1013,20 @@ body {
   <span style="margin-left:auto">
     <a href="https://fresha.crowdin.com/u/projects/25" target="_blank"
        class="ion-button-base ion-btn rounded-rounded h-400 px-150 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
-       data-size="s" data-visual="secondary">
-      Open Crowdin project ↗
-    </a>
+       data-size="s" data-visual="secondary">Open Crowdin ↗</a>
   </span>
 </header>
 
 <div class="layout">
-  <!-- Sidebar -->
   <nav class="sidebar">
-    <div class="ion-nav-list" data-size="m">
-      <span class="ion-nav-list-section-heading sidebar-section-label">Standard segments</span>
-      <ul class="ion-nav-list-list" id="seg-type-grid"></ul>
-    </div>
+    <span class="sidebar-section-label">Standard segments</span>
+    <ul class="ion-nav-list-list" id="seg-type-grid" style="list-style:none;padding:0;margin:0"></ul>
     <div class="sidebar-divider"></div>
-    <div class="ion-nav-list" data-size="m">
-      <span class="ion-nav-list-section-heading sidebar-section-label">Custom segment builder</span>
-      <ul class="ion-nav-list-list" id="new-seg-grid"></ul>
-    </div>
+    <span class="sidebar-section-label">Custom segment builder</span>
+    <ul class="ion-nav-list-list" id="new-seg-grid" style="list-style:none;padding:0;margin:0"></ul>
   </nav>
 
-  <!-- Right side -->
   <div style="display:flex;flex-direction:column;overflow:hidden">
-    <!-- Sentence bar -->
     <div class="sentence-bar">
       <div class="sentence-meta">
         <span class="sentence-label">Template</span>
@@ -1098,18 +1034,17 @@ body {
       <div class="template-raw" id="template-display"></div>
       <div class="sentence-meta" style="margin-top:var(--spacing-75)">
         <span class="sentence-label">Assembled sentence</span>
-        <span id="combo-badge" class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral" data-size="m" data-intent="neutral" data-visual="faded" style="margin-left:auto"></span>
+        <span id="combo-badge"
+              class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral"
+              style="margin-left:auto"></span>
       </div>
       <div class="sentence-text" id="sentence-display"></div>
     </div>
 
-    <!-- Options + breakdown -->
     <div class="right-area">
       <div class="options-panel" id="options-panel"></div>
       <div class="breakdown">
-        <div class="breakdown-header">
-          <span class="breakdown-title">Crowdin strings</span>
-        </div>
+        <div class="breakdown-title">Crowdin strings</div>
         <div id="string-rows"></div>
       </div>
     </div>
@@ -1378,79 +1313,229 @@ const TEMPLATES = [
   },
 ];
 
+// ── Custom builder Crowdin links (correct /all/ URL) ─────────────────────
+const CUSTOM_CROWDIN = {
+  'is less than':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083707',
+  'is exactly':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083709',
+  'is between':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083711',
+  'is more than':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083713',
+  'is at least':      'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083715',
+  'is at most':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083717',
+  'is in the past':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083719',
+  'is in the last':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083721',
+  'is on':            'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083723',
+  'is in the next':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083725',
+  'is in the future': 'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083727',
+  'is':               'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083729',
+  'is not':           'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083731',
+  'is any':           'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083733',
+  'is empty':         'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083735',
+  'is not empty':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083737',
+  'contains':         'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083739',
+  'does not contain': 'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083741',
+  'Clients with':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083743',
+  'where':            'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083745',
+  'and':              'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083747',
+  'Unit':             'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083749',
+  'From':             'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083751',
+  'To':               'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083753',
+};
 
-// ── State ─────────────────────────────────────────────────────────────────
+const ALL_CROWDIN = (label) =>
+  CROWDIN_LINKS[label] || CROWDIN_LINKS[label.toLowerCase()] ||
+  CUSTOM_CROWDIN[label] || CUSTOM_CROWDIN[label.toLowerCase()] ||
+  'https://fresha.crowdin.com/u/projects/25';
+
+// ── Custom segment builder segment vars ──────────────────────────────────
+Object.assign(SEG_COLORS, {
+  '%{numOp}':     { bg: '#201E45', text: '#8880FF', bar: '#6950F3' },
+  '%{dateOp}':    { bg: '#133263', text: '#5791F0', bar: '#2370EC' },
+  '%{strOp}':     { bg: '#182914', text: '#45B020', bar: '#1F8900' },
+  '%{catOp}':     { bg: '#371C0C', text: '#F19101', bar: '#B7570B' },
+  '%{fromLbl}':   { bg: '#421015', text: '#FF4360', bar: '#D4163A' },
+  '%{toLbl}':     { bg: '#421015', text: '#FF4360', bar: '#D4163A' },
+  '%{unitLbl}':   { bg: '#2B2660', text: '#B0B1FD', bar: '#6950F3' },
+  '%{ruleConn}':  { bg: '#082B26', text: '#23A99D', bar: '#0D9488' },
+  '%{whereConn}': { bg: '#082B26', text: '#23A99D', bar: '#0D9488' },
+  '%{andConn}':   { bg: '#082B26', text: '#23A99D', bar: '#0D9488' },
+});
+
+Object.assign(SEG_LABELS, {
+  '%{numOp}':     'number operator',
+  '%{dateOp}':    'date operator',
+  '%{strOp}':     'text operator',
+  '%{catOp}':     'categorical operator',
+  '%{fromLbl}':   'From label',
+  '%{toLbl}':     'To label',
+  '%{unitLbl}':   'Unit label',
+  '%{ruleConn}':  'Clients with',
+  '%{whereConn}': 'where',
+  '%{andConn}':   'and',
+});
+
+Object.assign(SEG_NOTES, {
+  '%{numOp}':     'Operator for number fields (e.g. number of appointments, total spend). 6 variants.',
+  '%{dateOp}':    'Operator for date fields (e.g. added date, appointment date). 6 variants.',
+  '%{strOp}':     'Operator for text fields (e.g. email, phone, name). 6 variants.',
+  '%{catOp}':     'Operator for categorical / multi-select fields (e.g. tags, services). 5 variants.',
+  '%{fromLbl}':   'Visually hidden lower-bound label. Shows when operator is "is between".',
+  '%{toLbl}':     'Visually hidden upper-bound label. Shows when operator is "is between".',
+  '%{unitLbl}':   'Visually hidden unit dropdown label. Shows with "is in the last" / "is in the next".',
+  '%{ruleConn}':  'Always opens a rule card. Fixed — 1 variant.',
+  '%{whereConn}': 'Introduces the first condition in a rule. Fixed — 1 variant.',
+  '%{andConn}':   'Joins each additional condition. Fixed — 1 variant.',
+});
+
+Object.assign(SEG_VALUES, {
+  '%{numOp}': [
+    { label: 'is less than',   hasVar: false },
+    { label: 'is exactly',     hasVar: false },
+    { label: 'is between',     hasVar: false },
+    { label: 'is more than',   hasVar: false },
+    { label: 'is at least',    hasVar: false },
+    { label: 'is at most',     hasVar: false },
+  ],
+  '%{dateOp}': [
+    { label: 'is in the past',   hasVar: false },
+    { label: 'is in the last',   hasVar: false },
+    { label: 'is on',            hasVar: false },
+    { label: 'is between',       hasVar: false },
+    { label: 'is in the next',   hasVar: false },
+    { label: 'is in the future', hasVar: false },
+  ],
+  '%{strOp}': [
+    { label: 'is',               hasVar: false },
+    { label: 'is not',           hasVar: false },
+    { label: 'is empty',         hasVar: false },
+    { label: 'is not empty',     hasVar: false },
+    { label: 'contains',         hasVar: false },
+    { label: 'does not contain', hasVar: false },
+  ],
+  '%{catOp}': [
+    { label: 'is',           hasVar: false },
+    { label: 'is not',       hasVar: false },
+    { label: 'is empty',     hasVar: false },
+    { label: 'is not empty', hasVar: false },
+    { label: 'is any',       hasVar: false },
+  ],
+  '%{fromLbl}':   [{ label: 'From',         hasVar: false }],
+  '%{toLbl}':     [{ label: 'To',           hasVar: false }],
+  '%{unitLbl}':   [{ label: 'Unit',         hasVar: false }],
+  '%{ruleConn}':  [{ label: 'Clients with', hasVar: false }],
+  '%{whereConn}': [{ label: 'where',        hasVar: false }],
+  '%{andConn}':   [{ label: 'and',          hasVar: false }],
+});
+
+TEMPLATES.push(
+  {
+    name: 'Number operator',
+    color: '#6950F3',
+    section: 'custom',
+    template: '%{ruleConn} [metric] %{numOp} [value]',
+    vars: ['%{ruleConn}', '%{numOp}'],
+  },
+  {
+    name: 'Number range',
+    color: '#6950F3',
+    section: 'custom',
+    template: '%{ruleConn} [metric] is between %{fromLbl} [x] %{toLbl} [y]',
+    vars: ['%{ruleConn}', '%{fromLbl}', '%{toLbl}'],
+  },
+  {
+    name: 'Date operator',
+    color: '#2370EC',
+    section: 'custom',
+    template: '%{ruleConn} [attribute] %{dateOp} [value]',
+    vars: ['%{ruleConn}', '%{dateOp}'],
+  },
+  {
+    name: 'Date in the last',
+    color: '#2370EC',
+    section: 'custom',
+    template: '%{ruleConn} [attribute] is in the last [n] %{unitLbl}',
+    vars: ['%{ruleConn}', '%{unitLbl}'],
+  },
+  {
+    name: 'Text operator',
+    color: '#1F8900',
+    section: 'custom',
+    template: '%{ruleConn} [attribute] %{strOp} [value]',
+    vars: ['%{ruleConn}', '%{strOp}'],
+  },
+  {
+    name: 'Categorical operator',
+    color: '#B7570B',
+    section: 'custom',
+    template: '%{ruleConn} [attribute] %{catOp} [values]',
+    vars: ['%{ruleConn}', '%{catOp}'],
+  },
+  {
+    name: 'Multi-condition',
+    color: '#0D9488',
+    section: 'custom',
+    template: '%{ruleConn} [attr] [op] [val] %{whereConn} [attr] [op] [val] %{andConn} [attr] [op] [val]',
+    vars: ['%{ruleConn}', '%{whereConn}', '%{andConn}'],
+  }
+);
+
+
+// ── State ──────────────────────────────────────────────────────────────────
 let activeTemplate = 0;
-let activeNewTemplate = null;
 let selections = {};
 
 function countCombos(tmpl) {
-  return tmpl.vars.reduce((acc, v) => acc * SEG_VALUES[v].length, 1);
+  return tmpl.vars.reduce((acc, v) => acc * (SEG_VALUES[v] || [1]).length, 1);
 }
-
 function initSelections(tmpl) {
   const s = {};
   tmpl.vars.forEach(v => { s[v] = 0; });
   return s;
 }
 
-// ── Sidebar render ────────────────────────────────────────────────────────
-function renderSidebar() {
-  // Standard segments
-  document.getElementById('seg-type-grid').innerHTML = TEMPLATES.map((t, i) => {
-    const active = activeNewTemplate === null && i === activeTemplate;
-    return `<li>
-      <button class="ion-nav-list-item h-500 px-150 text-s gap-75 w-100${active ? '" aria-current="page" data-current' : '"'}
-        onclick="selectTemplate(${i})" style="width:100%;border:none;background:none;cursor:pointer;border-radius:var(--radius-s);">
-        <span style="width:8px;height:8px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
-        <span style="flex:1;text-align:left">${t.name}</span>
-        <span class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral"
-              data-size="m" data-intent="neutral" data-visual="faded">${countCombos(t).toLocaleString()}</span>
-      </button>
-    </li>`;
-  }).join('');
-
-  // New strings
-  document.getElementById('new-seg-grid').innerHTML = NEW_TEMPLATES.map((t, i) => {
-    const active = activeNewTemplate === i;
-    return `<li>
-      <button class="ion-nav-list-item h-500 px-150 text-s gap-75${active ? '" aria-current="page" data-current' : '"'}
-        onclick="selectNewTemplate(${i})" style="width:100%;border:none;background:none;cursor:pointer;border-radius:var(--radius-s);">
-        <span style="width:8px;height:8px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
-        <span style="flex:1;text-align:left">${t.name}</span>
-        <span class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral"
-              data-size="m">${NEW_STRINGS[t.group].length}</span>
-      </button>
-    </li>`;
-  }).join('');
+// ── Sidebar ────────────────────────────────────────────────────────────────
+function navItem(name, color, badge, idx, isNew, active) {
+  return `<li>
+    <button class="ion-nav-list-item h-500 px-150 text-s gap-75${active ? '" aria-current="page" data-current' : '"'}
+      onclick="${isNew ? 'selectCustomTemplate' : 'selectTemplate'}(${idx})"
+      style="width:100%;border:none;background:none;cursor:pointer;border-radius:var(--radius-s);font-family:var(--ion-font-body)">
+      <span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span>
+      <span style="flex:1;text-align:left;color:var(--foreground-neutral)">${name}</span>
+      <span class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral">${badge}</span>
+    </button>
+  </li>`;
 }
 
-// ── Standard segment render ───────────────────────────────────────────────
+function renderSidebar() {
+  const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
+  const stdTemplates = stdEnd === -1 ? TEMPLATES : TEMPLATES.slice(0, stdEnd);
+  const custTemplates = stdEnd === -1 ? [] : TEMPLATES.slice(stdEnd);
+
+  document.getElementById('seg-type-grid').innerHTML = stdTemplates.map((t, i) =>
+    navItem(t.name, t.color, countCombos(t).toLocaleString(), i, false, activeTemplate === i)
+  ).join('');
+
+  document.getElementById('new-seg-grid').innerHTML = custTemplates.map((t, i) =>
+    navItem(t.name, t.color, countCombos(t).toLocaleString(), i, true, activeTemplate === stdEnd + i)
+  ).join('');
+}
+
+// ── Render helpers ─────────────────────────────────────────────────────────
 function renderOptions(tmpl) {
   document.getElementById('options-panel').innerHTML = tmpl.vars.map(v => {
-    const col = SEG_COLORS[v];
-    const vals = SEG_VALUES[v];
+    const col = SEG_COLORS[v] || { bg:'#333',text:'#ccc',bar:'#888' };
+    const vals = SEG_VALUES[v] || [];
     const selIdx = selections[v] || 0;
     return `<div>
-      <div class="option-group-label" style="color:${col.text}">${SEG_LABELS[v]}</div>
+      <div class="option-group-label" style="color:${col.text}">${SEG_LABELS[v] || v}</div>
       <div class="option-values">
         ${vals.map((val, vi) => `
-          <button class="option-btn${vi === selIdx ? ' selected' : ''}"
-            style="${vi === selIdx ? `background:${col.bg};color:${col.text};border-color:${col.bar}40` : ''}"
-            onclick="selectVal('${v}', ${vi})">${val.label}</button>
+          <button class="option-btn${vi===selIdx?' selected':''}"
+            style="${vi===selIdx?`background:${col.bg};color:${col.text};border-color:${col.bar}40`:''}"
+            onclick="selectVal('${v}',${vi})">${val.label}</button>
         `).join('')}
       </div>
     </div>`;
   }).join('');
-}
-
-function assembledSentence(tmpl) {
-  let s = tmpl.template;
-  tmpl.vars.forEach(v => {
-    const val = SEG_VALUES[v][selections[v] || 0];
-    s = s.replace(v, val.blank ? '' : val.label);
-  });
-  return s;
 }
 
 function renderSentenceDisplay(tmpl) {
@@ -1458,53 +1543,61 @@ function renderSentenceDisplay(tmpl) {
   document.getElementById('sentence-display').innerHTML = parts.map(part => {
     const match = tmpl.vars.find(v => v === part);
     if (match) {
-      const col = SEG_COLORS[match];
-      const val = SEG_VALUES[match][selections[match] || 0];
+      const col = SEG_COLORS[match] || { bg:'#333',text:'#ccc',bar:'#888' };
+      const val = (SEG_VALUES[match]||[])[selections[match]||0];
       if (!val || val.blank) return '';
       return `<span class="seg-chip" style="background:${col.bg};color:${col.text};border-color:${col.bar}40">${val.label}</span>`;
     }
-    return `<span>${part}</span>`;
+    if (part.trim()) return `<span>${part}</span>`;
+    return '';
   }).join('');
 }
 
 function renderTemplate(tmpl) {
   const parts = tmpl.template.split(/(%\{[^}]+\})/g);
   document.getElementById('template-display').innerHTML = parts.map(part =>
-    /%\{[^}]+\}/.test(part) ? `<span class="tvar">${part}</span>` : `<span>${part}</span>`
+    /%\{[^}]+\}/.test(part)
+      ? `<span class="tvar">${part}</span>`
+      : `<span>${part}</span>`
   ).join('');
 }
 
 function renderBreakdown(tmpl) {
   document.getElementById('string-rows').innerHTML = tmpl.vars.map(v => {
-    const col = SEG_COLORS[v];
-    const val = SEG_VALUES[v][selections[v] || 0];
+    const col = SEG_COLORS[v] || { bg:'#333',text:'#ccc',bar:'#888' };
+    const val = (SEG_VALUES[v]||[])[selections[v]||0];
+    if (!val) return '';
     const isBlank = val.blank;
-    const crowdinUrl = isBlank ? null : CROWDIN_URL(val.label);
+    const url = ALL_CROWDIN(val.label);
     return `
       <div class="string-card">
         <div class="string-card-bar" style="background:${col.bar}"></div>
         <div class="string-card-body">
           <span class="string-card-var">${v}</span>
-          <span class="string-card-value${isBlank ? ' blank' : ''}">${isBlank ? '(not applied — no filter)' : val.label}</span>
-          <span class="string-card-note">${SEG_NOTES[v]}</span>
+          <span class="string-card-value${isBlank?' blank':''}">
+            ${isBlank ? '(not applied)' : val.label}
+          </span>
+          <span class="string-card-note">${SEG_NOTES[v]||''}</span>
         </div>
         <div class="string-card-actions">
-          ${!isBlank ? `
-            <a href="${crowdinUrl}" target="_blank"
-               class="ion-button-base ion-btn rounded-rounded h-400 px-150 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
-               data-size="s" data-visual="primary">Open in Crowdin ↗</a>
-            <button class="ion-button-base ion-btn rounded-rounded h-400 px-150 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
-               data-size="s" data-visual="secondary"
-               onclick="copyStr('${val.label.replace(/'/g, "\\'")}'.replace(/&amp;/g,'&'), this)">Copy</button>
-          ` : `<span style="font-size:var(--font-size-xs);color:var(--foreground-ghost)">Blank / no filter</span>`}
+          ${isBlank
+            ? `<span style="font-size:var(--font-size-xs);color:var(--foreground-ghost)">Blank / no filter</span>`
+            : `<a href="${url}" target="_blank"
+                 class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
+                 data-visual="primary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)">
+                 Open in Crowdin ↗
+               </a>
+               <button class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
+                 data-visual="secondary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)"
+                 onclick="copyStr('${val.label.replace(/'/g,"\\'")}', this)">Copy</button>`
+          }
         </div>
       </div>`;
   }).join('');
 }
 
 function renderComboCount(tmpl) {
-  const n = countCombos(tmpl);
-  document.getElementById('combo-badge').textContent = n.toLocaleString() + ' combinations';
+  document.getElementById('combo-badge').textContent = countCombos(tmpl).toLocaleString() + ' combinations';
 }
 
 function render() {
@@ -1518,10 +1611,14 @@ function render() {
 }
 
 function selectTemplate(i) {
-  activeNewTemplate = null;
   activeTemplate = i;
   selections = initSelections(TEMPLATES[i]);
   render();
+}
+
+function selectCustomTemplate(i) {
+  const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
+  selectTemplate(stdEnd + i);
 }
 
 function selectVal(varName, idx) {
@@ -1532,51 +1629,6 @@ function selectVal(varName, idx) {
   renderBreakdown(tmpl);
 }
 
-// ── New string builder render ─────────────────────────────────────────────
-function selectNewTemplate(i) {
-  activeNewTemplate = i;
-  render_new(i);
-  renderSidebar();
-}
-
-function render_new(i) {
-  const tmpl = NEW_TEMPLATES[i];
-  const strings = NEW_STRINGS[tmpl.group];
-
-  document.getElementById('template-display').innerHTML =
-    `<span style="color:var(--foreground-ghost)">Context: </span><span class="tvar" style="font-family:var(--ion-font-mono)">${tmpl.group}</span>`;
-
-  document.getElementById('sentence-display').innerHTML =
-    `<span style="font-size:var(--font-size-s);color:var(--foreground-neutral-faded)">${tmpl.note}</span>`;
-
-  document.getElementById('combo-badge').textContent = strings.length + ' strings';
-
-  document.getElementById('options-panel').innerHTML =
-    `<div style="color:var(--foreground-ghost);font-size:var(--font-size-xs);padding:var(--spacing-100) 0;line-height:var(--line-height-s)">
-      UI labels — no composable values
-    </div>`;
-
-  document.getElementById('string-rows').innerHTML = strings.map(s => `
-    <div class="string-card">
-      <div class="string-card-bar" style="background:${tmpl.color}"></div>
-      <div class="string-card-body">
-        <span class="string-card-var" style="color:${tmpl.color}">${tmpl.group}</span>
-        <span class="string-card-value">${s.text}</span>
-        <span class="string-card-note">ID: ${s.id}</span>
-      </div>
-      <div class="string-card-actions">
-        <a href="${NEW_STRING_URL(s.id)}" target="_blank"
-           class="ion-button-base ion-btn rounded-rounded h-400 px-150 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
-           data-size="s" data-visual="primary">Open in Crowdin ↗</a>
-        <button class="ion-button-base ion-btn rounded-rounded h-400 px-150 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
-           data-size="s" data-visual="secondary"
-           onclick="copyStr('${s.text.replace(/'/g, "\\'")}'.replace(/&amp;/g,'&'), this)">Copy</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ── Utils ─────────────────────────────────────────────────────────────────
 function copyStr(str, btn) {
   navigator.clipboard.writeText(str).then(() => {
     const orig = btn.textContent;
@@ -1586,7 +1638,6 @@ function copyStr(str, btn) {
   });
 }
 
-// Init
 selectTemplate(0);
 </script>
 </body>
