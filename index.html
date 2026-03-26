@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///Users/lorena.martinez/Downloads/segment_sentence_composer_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Segment Sentence Composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./Client Segment Sentence Composer_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1623;
+    --navy-mid: #1a2435;
+    --navy-light: #243044;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --purple-mid: #6d28d9;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --coral: #e53935;
+    --coral-light: #fce8e8;
+    --blue: #1565c0;
+    --blue-light: #e3f2fd;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --brown: #4e342e;
+    --brown-light: #efebe9;
+    --slate: #e3e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #dde3ed;
+    --surface: #f8fafc;
+    --white: #ffffff;
+    --tag-h: 26px;
+    --crowdin: #fresha;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .topbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.01em;
+  }
+  .topbar-sub {
+    font-size: 11px;
+    color: #64748b;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .topbar-badge {
+    margin-left: auto;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    color: #c4b5fd;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .crowdin-top-link {
+    color: #60a5fa;
+    font-size: 11px;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 3px 10px;
+    border: 1px solid rgba(96,165,250,0.3);
+    border-radius: 20px;
+    transition: background 0.15s;
+  }
+  .crowdin-top-link:hover { background: rgba(96,165,250,0.1); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    flex: 1;
+    overflow: hidden;
+    height: calc(100vh - 57px);
+  }
+
+  /* ── LEFT PANEL ── */
+  .left-panel {
+    background: var(--navy-mid);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-section {
+    padding: 20px 20px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .panel-section:last-child { border-bottom: none; }
+  .panel-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 10px;
+  }
+
+  /* Segment type selector */
+  .seg-type-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .seg-type-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+  }
+  .seg-type-btn:hover { background: rgba(255,255,255,0.05); }
+  .seg-type-btn.active {
+    background: rgba(124,58,237,0.15);
+    border-color: rgba(124,58,237,0.4);
+  }
+  .seg-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .seg-type-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cbd5e1;
+  }
+  .seg-type-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: #475569;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Options sliders */
+  .option-group {
+    margin-bottom: 14px;
+  }
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .option-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .option-values {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .option-val-btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-size: 11px;
+    font-weight: 400;
+    color: #94a3b8;
+    background: rgba(255,255,255,0.03);
+    text-align: left;
+    transition: all 0.12s;
+    font-family: 'Sora', sans-serif;
+  }
+  .option-val-btn:hover { background: rgba(255,255,255,0.07); color: #e2e8f0; }
+  .option-val-btn.selected {
+    color: var(--white) !important;
+    font-weight: 500;
+    border-color: transparent !important;
+  }
+
+  /* ── RIGHT PANEL ── */
+  .right-panel {
+    background: var(--surface);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Sentence preview */
+  .sentence-preview-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px 24px;
+  }
+  .preview-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sentence-display {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 60px;
+  }
+  .sentence-display .seg-chip {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 1px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  /* Strings breakdown */
+  .breakdown-wrap {
+    padding: 24px 32px;
+    flex: 1;
+  }
+  .breakdown-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .string-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .string-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: box-shadow 0.15s;
+  }
+  .string-row:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .string-row-color {
+    width: 4px;
+    border-radius: 4px;
+    align-self: stretch;
+    flex-shrink: 0;
+    min-height: 40px;
+  }
+  .string-row-body { flex: 1; min-width: 0; }
+  .string-row-var {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .string-row-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+  .string-row-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .string-row-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .crowdin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid rgba(21,101,192,0.2);
+    transition: all 0.15s;
+    cursor: pointer;
+    font-family: 'Sora', sans-serif;
+    white-space: nowrap;
+  }
+  .crowdin-btn:hover { background: #bbdefb; }
+  .crowdin-btn.disabled {
+    color: var(--muted);
+    background: var(--surface);
+    border-color: var(--border);
+    cursor: default;
+  }
+  .crowdin-btn.disabled:hover { background: var(--surface); }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Sora', sans-serif;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: var(--slate); color: var(--text); }
+
+  /* Template row */
+  .template-row {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+  }
+  .template-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .template-string {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #475569;
+    line-height: 1.8;
+  }
+  .template-string .tvar {
+    color: var(--purple);
+    font-weight: 500;
+  }
+
+  /* Combo count */
+  .combo-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .combo-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: var(--purple);
+    font-size: 13px;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  .right-panel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Client Segment · Sentence Composer</div>
+    <div class="topbar-sub">QA reference tool · fresha.crowdin.com/u/projects/25</div>
+  </div>
+  <a class="crowdin-top-link" href="https://fresha.crowdin.com/u/projects/25" target="_blank">Open Crowdin ↗</a>
+  <div class="topbar-badge" id="combo-badge">26 combinations</div>
+</div>
+
+<div class="main">
+
+  <!-- LEFT: segment type + options -->
+  <div class="left-panel">
+    <div class="panel-section">
+      <div class="panel-label">Segment type</div>
+      <div class="seg-type-grid" id="seg-type-grid">
+    <button class="seg-type-btn active" onclick="selectTemplate(0)">
+      <span class="seg-dot" style="background:#7c3aed"></span>
+      <span class="seg-type-label">New clients</span>
+      <span class="seg-type-count">26</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(1)">
+      <span class="seg-dot" style="background:#0d9488"></span>
+      <span class="seg-type-label">Recent clients</span>
+      <span class="seg-type-count">208</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(2)">
+      <span class="seg-dot" style="background:#d97706"></span>
+      <span class="seg-type-label">Loyal clients</span>
+      <span class="seg-type-count">832</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(3)">
+      <span class="seg-dot" style="background:#e53935"></span>
+      <span class="seg-type-label">Lapsed clients</span>
+      <span class="seg-type-count">416</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(4)">
+      <span class="seg-dot" style="background:#1565c0"></span>
+      <span class="seg-type-label">Client by channel</span>
+      <span class="seg-type-count">16</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(5)">
+      <span class="seg-dot" style="background:#2e7d32"></span>
+      <span class="seg-type-label">Clients by appt date</span>
+      <span class="seg-type-count">208</span>
+    </button>
+  
+    <button class="seg-type-btn " onclick="selectTemplate(6)">
+      <span class="seg-dot" style="background:#6d4c41"></span>
+      <span class="seg-type-label">Clients with sales</span>
+      <span class="seg-type-count">520</span>
+    </button>
+  </div>
+    </div>
+    <div class="panel-section" id="options-panel"><div class="panel-label">Segment values</div>
+        <div class="option-group">
+          <div class="option-label" style="color:#6d28d9">
+            <span class="option-tag" style="background:#ede9fe;color:#6d28d9">time</span>
+          </div>
+          <div class="option-values">
+            
+              <button class="option-val-btn selected" style="background:#ede9fe;color:#6d28d9;border-color:#7c3aed40" onclick="selectVal(&#39;%{timeSegment}&#39;, 0)">in the last day</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 1)">in the last %{dayCount} days</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 2)">in the last week</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 3)">in the last %{weekCount} weeks</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 4)">in the last month</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 5)">in the last %{monthCount} months</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 6)">between %{dateFrom} and %{dateTo}</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 7)">in the next day</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 8)">in the next %{dayCount} days</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 9)">in the next week</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 10)">in the next %{weekCount} weeks</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 11)">in the next month</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{timeSegment}&#39;, 12)">in the next %{monthCount} months</button>
+            
+          </div>
+        </div>
+      
+        <div class="option-group">
+          <div class="option-label" style="color:#92400e">
+            <span class="option-tag" style="background:#fef3c7;color:#92400e">future appointments</span>
+          </div>
+          <div class="option-values">
+            
+              <button class="option-val-btn selected" style="background:#fef3c7;color:#92400e;border-color:#d9770640" onclick="selectVal(&#39;%{futureAppointmentsSegment}&#39;, 0)">and with no upcoming appointments</button>
+            
+              <button class="option-val-btn " style="" onclick="selectVal(&#39;%{futureAppointmentsSegment}&#39;, 1)">(no filter — leave blank)</button>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- RIGHT: preview + breakdown -->
+  <div class="right-panel">
+    <div class="template-row">
+      <div class="template-label">Sentence template</div>
+      <div class="template-string" id="template-display">Clients added <span class="tvar">%{timeSegment}</span><span class="tvar">%{futureAppointmentsSegment}</span></div>
+    </div>
+    <div class="combo-bar">
+      <span>Possible combinations for this segment type:</span>
+      <span class="combo-num" id="combo-count">26</span>
+      <span>· each combination = multiple Crowdin strings</span>
+    </div>
+    <div class="sentence-preview-wrap">
+      <div class="preview-label">Assembled sentence (current selection)</div>
+      <div class="sentence-display" id="sentence-display">Clients added <span class="seg-chip" style="background:#ede9fe;color:#6d28d9">in the last day</span><span class="seg-chip" style="background:#fef3c7;color:#92400e">and with no upcoming appointments</span></div>
+    </div>
+    <div class="breakdown-wrap">
+      <div class="breakdown-title">Crowdin strings in this sentence</div>
+      <div class="string-rows" id="string-rows">
+      <div class="string-row">
+        <div class="string-row-color" style="background:#7c3aed"></div>
+        <div class="string-row-body">
+          <div class="string-row-var" style="color:#6d28d9">%{timeSegment}</div>
+          <div class="string-row-val" style="">in the last day</div>
+          <div class="string-row-meta">13 variants: past/future ranges. Appears mid-sentence.</div>
+        </div>
+        <div class="string-row-actions">
+          <a class="crowdin-btn" href="https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&amp;filter=basic&amp;value=1#3729330" target="_blank">→ Open in Crowdin</a>
+          <button class="copy-btn" onclick="copyStr(&#39;in the last day&#39;, this)">Copy string</button>
+        </div>
+      </div>
+    
+      <div class="string-row">
+        <div class="string-row-color" style="background:#d97706"></div>
+        <div class="string-row-body">
+          <div class="string-row-var" style="color:#92400e">%{futureAppointmentsSegment}</div>
+          <div class="string-row-val" style="">and with no upcoming appointments</div>
+          <div class="string-row-meta">Optional suffix. Blank = no filter. If selected, appends to end of sentence.</div>
+        </div>
+        <div class="string-row-actions">
+          <a class="crowdin-btn" href="https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&amp;filter=basic&amp;value=1#3729368" target="_blank">→ Open in Crowdin</a>
+          <button class="copy-btn" onclick="copyStr(&#39;and with no upcoming appointments&#39;, this)">Copy string</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const CROWDIN_EDITOR = (fileId) => `https://fresha.crowdin.com/editor/25/${fileId}/en-/2223?view=comfortable`;
+
+// Exact Crowdin file IDs per string, from original Excel hyperlinks
+const CROWDIN_LINKS = {
+  '%{employeeCount} team members': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729362',
+  '%{locationCount} locations': 'https://fresha.crowdin.com/editor/25/58356/en-/2223?view=comfortable&filter=basic&value=1#3709556',
+  '%{salesCount} or more sales': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729348',
+  '%{serviceCount} services': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729358',
+  '1 or more sale': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729348',
+  'Any location': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728900',
+  'Any service': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728914',
+  'Any service, product, gift card or membership': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729102',
+  'Any team member': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728892',
+  'Clients added %{timeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729380',
+  'Clients added in': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729160',
+  'Clients who': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729060',
+  'Clients who %{previouslyBookedOnlineSegment} and booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3728664',
+  'Clients who previously booked an appointment online and booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/80659/en-/2223?view=comfortable&filter=basic&value=1#5297271',
+  'Clients with %{salesCountSegment} %{timeSegment}, who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment} and did not return %{notReturnedInTimeSegment}': 'https://fresha.crowdin.com/editor/25/80659/en-/2223?view=comfortable&filter=basic&value=1#5297269',
+  'Clients with %{salesCountSegment} %{timeSegment}, who spent %{minimumAmountSpentSegment} and booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/80659/en-/2223?view=comfortable&filter=basic&value=1#5297267',
+  'Clients with appointments %{timeSegment}, who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3728666',
+  'Clients with appointments in': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729080',
+  'Clients with at least': 'https://fresha.crowdin.com/editor/25/58510/en-?view=comfortable&filter=basic&value=1#3723218',
+  'Clients with sales %{timeSegment}, who %{minimumAmountSpentSegment} and purchased %{saleTargetSegment} at %{locationSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3728668',
+  'Clients with sales in': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729094',
+  'Clients with the last appointment in': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729170',
+  'Clients with their last appointment %{timeSegment} who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3728658',
+  'Custom dates': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729078',
+  'Date from': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729082',
+  'Date to': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729086',
+  'Gift cards': 'https://fresha.crowdin.com/editor/25/16746/en-/2223?view=comfortable&filter=basic&value=1#2053935',
+  'Last 30 days': 'https://fresha.crowdin.com/editor/25/52278/en-/2223?view=comfortable&filter=basic&value=1#3189480',
+  'Last 7 days': 'https://fresha.crowdin.com/editor/25/52278/en-/2223?view=comfortable&filter=basic&value=1#3189484',
+  'Last 90 days': 'https://fresha.crowdin.com/editor/25/52278/en-/2223?view=comfortable&filter=basic&value=1#3189486',
+  'Never booked online': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729058',
+  'Previously booked an appointment online': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729056',
+  'Selected memberships': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729106',
+  'Selected products': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729104',
+  'Selected services': 'https://fresha.crowdin.com/editor/25/58518/en-?view=comfortable&filter=basic&value=1#3723906',
+  'Selected team members': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728894',
+  'and booked': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729062',
+  'and booked at': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728898',
+  'and purchased': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729098',
+  'and with no upcoming appointments': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729368',
+  'any amount': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729090',
+  'any location': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729364',
+  'any service': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729356',
+  'any service, product, gift card or membership': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729370',
+  'any team member': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729360',
+  'at least': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729092',
+  'at least %{amount}': 'https://fresha.crowdin.com/editor/25/80659/en-/2223?view=comfortable&filter=basic&value=1#5297263',
+  'between %{dateFrom} and %{dateTo}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729342',
+  'gift cards': 'https://fresha.crowdin.com/editor/25/58478/en-/2223?view=comfortable&filter=basic&value=1#3722462',
+  'in the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723224',
+  'in the last %{dayCount} days': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729330',
+  'in the last %{monthCount} months': 'https://fresha.crowdin.com/editor/25/113354/en-/2223?view=comfortable&filter=basic&value=1#6752603',
+  'in the last %{weekCount} weeks': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729332',
+  'in the last day': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729330',
+  'in the last month': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729334',
+  'in the last week': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729332',
+  'in the next %{dayCount} days': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729336',
+  'in the next %{monthCount} months': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729340',
+  'in the next %{weekCount} weeks': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729338',
+  'in the next day': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729336',
+  'in the next month': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729340',
+  'in the next week': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729338',
+  'previously booked an appointment online': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729344',
+  'selected memberships': 'https://fresha.crowdin.com/editor/25/21698/en-/2223?view=comfortable&filter=basic&value=1#1499984',
+  'selected products': 'https://fresha.crowdin.com/editor/25/21698/en-/2223?view=comfortable&filter=basic&value=1#1499986',
+  'selected services': 'https://fresha.crowdin.com/editor/25/21698/en-/2223?view=comfortable&filter=basic&value=1#1499988',
+  'who booked': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3728896',
+  'who did not return in the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723228',
+  'who spent': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729096',
+  'within the last': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729142',
+};
+
+const CROWDIN_URL = (label) => CROWDIN_LINKS[label] || CROWDIN_LINKS[label.toLowerCase()] || 'https://fresha.crowdin.com/u/projects/25';
+
+const SEG_COLORS = {
+  "%{timeSegment}":                   { bg: "#ede9fe", text: "#6d28d9", bar: "#7c3aed" },
+  "%{futureAppointmentsSegment}":     { bg: "#fef3c7", text: "#92400e", bar: "#d97706" },
+  "%{servicesSegment}":               { bg: "#ccfbf1", text: "#065f46", bar: "#0d9488" },
+  "%{locationSegment}":               { bg: "#e3f2fd", text: "#1565c0", bar: "#1565c0" },
+  "%{employeeSegment}":               { bg: "#fce8e8", text: "#b91c1c", bar: "#e53935" },
+  "%{minimumAmountSpentSegment}":     { bg: "#e8f5e9", text: "#1b5e20", bar: "#2e7d32" },
+  "%{salesCountSegment}":             { bg: "#fff0e6", text: "#7c2d12", bar: "#c2410c" },
+  "%{notReturnedInTimeSegment}":      { bg: "#f0e6ff", text: "#5b21b6", bar: "#7c3aed" },
+  "%{previouslyBookedOnlineSegment}": { bg: "#f1f5f9", text: "#334155", bar: "#64748b" },
+  "%{saleTargetSegment}":             { bg: "#e6f0ff", text: "#1e3a8a", bar: "#1565c0" },
+};
+
+const SEG_LABELS = {
+  "%{timeSegment}":                   "time",
+  "%{futureAppointmentsSegment}":     "future appointments",
+  "%{servicesSegment}":               "services",
+  "%{locationSegment}":               "location",
+  "%{employeeSegment}":               "employee",
+  "%{minimumAmountSpentSegment}":     "min. amount spent",
+  "%{salesCountSegment}":             "sales count",
+  "%{notReturnedInTimeSegment}":      "not returned",
+  "%{previouslyBookedOnlineSegment}": "booked online",
+  "%{saleTargetSegment}":             "sale target",
+};
+
+const SEG_NOTES = {
+  "%{timeSegment}":                   "13 variants: past/future ranges. Appears mid-sentence.",
+  "%{futureAppointmentsSegment}":     "Optional suffix. Blank = no filter. If selected, appends to end of sentence.",
+  "%{servicesSegment}":               "Follows 'booked'. 2 variants.",
+  "%{locationSegment}":               "Follows 'at'. 2 variants.",
+  "%{employeeSegment}":               "Follows 'with'. 2 variants.",
+  "%{minimumAmountSpentSegment}":     "Follows 'who spent' or 'who'. 2 variants.",
+  "%{salesCountSegment}":             "Opens 'Clients with ...'. 2 variants.",
+  "%{notReturnedInTimeSegment}":      "Follows 'did not return'. 2 variants.",
+  "%{previouslyBookedOnlineSegment}": "Fixed phrase — 1 variant only.",
+  "%{saleTargetSegment}":             "Follows 'purchased'. 5 variants.",
+};
+
+const SEG_VALUES = {
+  "%{timeSegment}": [
+    { label: "in the last day", hasVar: false },
+    { label: "in the last %{dayCount} days", hasVar: true },
+    { label: "in the last week", hasVar: false },
+    { label: "in the last %{weekCount} weeks", hasVar: true },
+    { label: "in the last month", hasVar: false },
+    { label: "in the last %{monthCount} months", hasVar: true },
+    { label: "between %{dateFrom} and %{dateTo}", hasVar: true },
+    { label: "in the next day", hasVar: false },
+    { label: "in the next %{dayCount} days", hasVar: true },
+    { label: "in the next week", hasVar: false },
+    { label: "in the next %{weekCount} weeks", hasVar: true },
+    { label: "in the next month", hasVar: false },
+    { label: "in the next %{monthCount} months", hasVar: true },
+  ],
+  "%{futureAppointmentsSegment}": [
+    { label: "and with no upcoming appointments", hasVar: false },
+    { label: "(no filter — leave blank)", hasVar: false, blank: true },
+  ],
+  "%{servicesSegment}": [
+    { label: "any service", hasVar: false },
+    { label: "%{serviceCount} services", hasVar: true },
+  ],
+  "%{locationSegment}": [
+    { label: "any location", hasVar: false },
+    { label: "%{locationCount} locations", hasVar: true },
+  ],
+  "%{employeeSegment}": [
+    { label: "any team member", hasVar: false },
+    { label: "%{employeeCount} team members", hasVar: true },
+  ],
+  "%{minimumAmountSpentSegment}": [
+    { label: "at least %{amount}", hasVar: true },
+    { label: "any amount", hasVar: false },
+  ],
+  "%{salesCountSegment}": [
+    { label: "1 or more sale", hasVar: false },
+    { label: "%{salesCount} or more sales", hasVar: true },
+  ],
+  "%{notReturnedInTimeSegment}": [
+    { label: "in the last month", hasVar: false },
+    { label: "in the last %{monthCount} months", hasVar: true },
+  ],
+  "%{previouslyBookedOnlineSegment}": [
+    { label: "previously booked an appointment online", hasVar: false },
+  ],
+  "%{saleTargetSegment}": [
+    { label: "any service, product, gift card or membership", hasVar: false },
+    { label: "selected services", hasVar: false },
+    { label: "selected products", hasVar: false },
+    { label: "selected memberships", hasVar: false },
+    { label: "gift cards", hasVar: false },
+  ],
+};
+
+const TEMPLATES = [
+  {
+    name: "New clients",
+    color: "#7c3aed",
+    template: "Clients added %{timeSegment}%{futureAppointmentsSegment}",
+    vars: ["%{timeSegment}", "%{futureAppointmentsSegment}"],
+  },
+  {
+    name: "Recent clients",
+    color: "#0d9488",
+    template: "Clients with their last appointment %{timeSegment} who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}",
+    vars: ["%{timeSegment}", "%{servicesSegment}", "%{locationSegment}", "%{employeeSegment}", "%{futureAppointmentsSegment}"],
+  },
+  {
+    name: "Loyal clients",
+    color: "#d97706",
+    template: "Clients with %{salesCountSegment} %{timeSegment}, who spent %{minimumAmountSpentSegment} and booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}",
+    vars: ["%{salesCountSegment}", "%{timeSegment}", "%{minimumAmountSpentSegment}", "%{servicesSegment}", "%{locationSegment}", "%{employeeSegment}", "%{futureAppointmentsSegment}"],
+  },
+  {
+    name: "Lapsed clients",
+    color: "#e53935",
+    template: "Clients with %{salesCountSegment} %{timeSegment}, who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment} and did not return %{notReturnedInTimeSegment}",
+    vars: ["%{salesCountSegment}", "%{timeSegment}", "%{servicesSegment}", "%{locationSegment}", "%{employeeSegment}", "%{notReturnedInTimeSegment}"],
+  },
+  {
+    name: "Client by channel",
+    color: "#1565c0",
+    template: "Clients who %{previouslyBookedOnlineSegment} and booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}",
+    vars: ["%{previouslyBookedOnlineSegment}", "%{servicesSegment}", "%{locationSegment}", "%{employeeSegment}", "%{futureAppointmentsSegment}"],
+  },
+  {
+    name: "Clients by appt date",
+    color: "#2e7d32",
+    template: "Clients with appointments %{timeSegment}, who booked %{servicesSegment} at %{locationSegment} with %{employeeSegment}%{futureAppointmentsSegment}",
+    vars: ["%{timeSegment}", "%{servicesSegment}", "%{locationSegment}", "%{employeeSegment}", "%{futureAppointmentsSegment}"],
+  },
+  {
+    name: "Clients with sales",
+    color: "#6d4c41",
+    template: "Clients with sales %{timeSegment}, who %{minimumAmountSpentSegment} and purchased %{saleTargetSegment} at %{locationSegment}%{futureAppointmentsSegment}",
+    vars: ["%{timeSegment}", "%{minimumAmountSpentSegment}", "%{saleTargetSegment}", "%{locationSegment}", "%{futureAppointmentsSegment}"],
+  },
+];
+
+// State
+let activeTemplate = 0;
+let selections = {};
+
+function countCombos(tmpl) {
+  return tmpl.vars.reduce((acc, v) => acc * SEG_VALUES[v].length, 1);
+}
+
+function initSelections(tmpl) {
+  const s = {};
+  tmpl.vars.forEach(v => { s[v] = 0; });
+  return s;
+}
+
+function renderSegTypeGrid() {
+  const grid = document.getElementById("seg-type-grid");
+  grid.innerHTML = TEMPLATES.map((t, i) => `
+    <button class="seg-type-btn ${i === activeTemplate ? 'active' : ''}" onclick="selectTemplate(${i})">
+      <span class="seg-dot" style="background:${t.color}"></span>
+      <span class="seg-type-label">${t.name}</span>
+      <span class="seg-type-count">${countCombos(t).toLocaleString()}</span>
+    </button>
+  `).join('');
+}
+
+function renderOptions(tmpl) {
+  const panel = document.getElementById("options-panel");
+  panel.innerHTML = `<div class="panel-label">Segment values</div>` +
+    tmpl.vars.map(v => {
+      const col = SEG_COLORS[v];
+      const vals = SEG_VALUES[v];
+      const selIdx = selections[v] || 0;
+      return `
+        <div class="option-group">
+          <div class="option-label" style="color:${col.text}">
+            <span class="option-tag" style="background:${col.bg};color:${col.text}">${SEG_LABELS[v]}</span>
+          </div>
+          <div class="option-values">
+            ${vals.map((val, vi) => `
+              <button class="option-val-btn ${vi === selIdx ? 'selected' : ''}"
+                style="${vi === selIdx ? `background:${col.bg};color:${col.text};border-color:${col.bar}40` : ''}"
+                onclick="selectVal('${v}', ${vi})">${val.label}</button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
+}
+
+function assembledSentence(tmpl) {
+  let s = tmpl.template;
+  tmpl.vars.forEach(v => {
+    const val = SEG_VALUES[v][selections[v] || 0];
+    const replacement = val.blank ? "" : val.label;
+    s = s.replace(v, replacement);
+  });
+  return s;
+}
+
+function renderSentenceDisplay(tmpl) {
+  const parts = tmpl.template.split(/(%\{[^}]+\})/g);
+  let html = parts.map(part => {
+    const match = tmpl.vars.find(v => v === part);
+    if (match) {
+      const col = SEG_COLORS[match];
+      const val = SEG_VALUES[match][selections[match] || 0];
+      const display = val.blank ? "" : val.label;
+      if (!display) return "";
+      return `<span class="seg-chip" style="background:${col.bg};color:${col.text}">${display}</span>`;
+    }
+    return part;
+  }).join('');
+  document.getElementById("sentence-display").innerHTML = html;
+}
+
+function renderTemplate(tmpl) {
+  const parts = tmpl.template.split(/(%\{[^}]+\})/g);
+  const html = parts.map(part => {
+    if (/%\{[^}]+\}/.test(part)) return `<span class="tvar">${part}</span>`;
+    return part;
+  }).join('');
+  document.getElementById("template-display").innerHTML = html;
+}
+
+function renderBreakdown(tmpl) {
+  const rows = document.getElementById("string-rows");
+  const html = tmpl.vars.map(v => {
+    const col = SEG_COLORS[v];
+    const val = SEG_VALUES[v][selections[v] || 0];
+    const hasLink = !val.blank;
+    const isBlank = val.blank;
+
+    return `
+      <div class="string-row">
+        <div class="string-row-color" style="background:${col.bar}"></div>
+        <div class="string-row-body">
+          <div class="string-row-var" style="color:${col.text}">${v}</div>
+          <div class="string-row-val" style="${isBlank ? 'color:#94a3b8;font-style:italic' : ''}">${isBlank ? '(not applied)' : val.label}</div>
+          <div class="string-row-meta">${SEG_NOTES[v]}</div>
+        </div>
+        <div class="string-row-actions">
+          ${hasLink
+            ? `<a class="crowdin-btn" href="${CROWDIN_URL(val.label)}" target="_blank">→ Open in Crowdin</a>`
+            
+              : `<span class="crowdin-btn disabled">Blank / no filter</span>`
+          }
+          ${!isBlank ? `<button class="copy-btn" onclick="copyStr('${val.label.replace(/'/g,"\\'")}', this)">Copy string</button>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+  rows.innerHTML = html;
+}
+
+function renderComboCount(tmpl) {
+  const n = countCombos(tmpl);
+  document.getElementById("combo-count").textContent = n.toLocaleString();
+  document.getElementById("combo-badge").textContent = `${n.toLocaleString()} combinations`;
+}
+
+function render() {
+  const tmpl = TEMPLATES[activeTemplate];
+  renderSegTypeGrid();
+  renderOptions(tmpl);
+  renderTemplate(tmpl);
+  renderSentenceDisplay(tmpl);
+  renderBreakdown(tmpl);
+  renderComboCount(tmpl);
+}
+
+function selectTemplate(i) {
+  activeTemplate = i;
+  selections = initSelections(TEMPLATES[i]);
+  render();
+}
+
+function selectVal(varName, idx) {
+  selections[varName] = idx;
+  renderOptions(TEMPLATES[activeTemplate]);
+  renderSentenceDisplay(TEMPLATES[activeTemplate]);
+  renderBreakdown(TEMPLATES[activeTemplate]);
+}
+
+function copyStr(str, btn) {
+  navigator.clipboard.writeText(str).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+// Init
+selectTemplate(0);
+</script>
+
+
+</body></html>
