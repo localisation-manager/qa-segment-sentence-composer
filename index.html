@@ -1024,6 +1024,9 @@ body {
     <div class="sidebar-divider"></div>
     <span class="sidebar-section-label">Custom segment builder</span>
     <ul class="ion-nav-list-list" id="new-seg-grid" style="list-style:none;padding:0;margin:0"></ul>
+    <div class="sidebar-divider"></div>
+    <span class="sidebar-section-label">String reference</span>
+    <ul class="ion-nav-list-list" id="ref-grid" style="list-style:none;padding:0;margin:0"></ul>
   </nav>
 
   <div style="display:flex;flex-direction:column;overflow:hidden">
@@ -1129,41 +1132,39 @@ const CROWDIN_LINKS = {
   'within the last': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729142',
 };
 
-// New strings: custom segment rule builder (file 165451)
+// New strings: custom segment rule builder (file 162763)
 const NEW_STRINGS = {
   'Segment condition operator': [
-    { text: 'is less than',     id: 11083707 },
-    { text: 'is exactly',       id: 11083709 },
-    { text: 'is between',       id: 11083711 },
-    { text: 'is more than',     id: 11083713 },
-    { text: 'is at least',      id: 11083715 },
-    { text: 'is at most',       id: 11083717 },
-    { text: 'is in the past',   id: 11083719 },
-    { text: 'is in the last',   id: 11083721 },
-    { text: 'is on',            id: 11083723 },
-    { text: 'is in the next',   id: 11083725 },
-    { text: 'is in the future', id: 11083727 },
-    { text: 'is',               id: 11083729 },
-    { text: 'is not',           id: 11083731 },
-    { text: 'is any',           id: 11083733 },
-    { text: 'is empty',         id: 11083735 },
-    { text: 'is not empty',     id: 11083737 },
-    { text: 'contains',         id: 11083739 },
-    { text: 'does not contain', id: 11083741 },
+    { text: 'is less than',     id: 10903193 },
+    { text: 'is exactly',       id: 10903195 },
+    { text: 'is between',       id: 10903197 },
+    { text: 'is more than',     id: 10903199 },
+    { text: 'is in the past',   id: 10903201 },
+    { text: 'is in the last',   id: 10903203 },
+    { text: 'is on',            id: 10903205 },
+    { text: 'is in the next',   id: 10903207 },
+    { text: 'is in the future', id: 10903209 },
+    { text: 'is',               id: 10903211 },
+    { text: 'is not',           id: 10903213 },
+    { text: 'is any',           id: 10903215 },
+    { text: 'is empty',         id: 10903217 },
+    { text: 'is not empty',     id: 10903219 },
+    { text: 'contains',         id: 10903221 },
+    { text: 'does not contain', id: 10903223 },
   ],
   'Segment rule connector': [
-    { text: 'Clients with', id: 11083743 },
-    { text: 'where',        id: 11083745 },
-    { text: 'and',          id: 11083747 },
+    { text: 'Clients with', id: 10903225 },
+    { text: 'where',        id: 10903227 },
+    { text: 'and',          id: 10903229 },
   ],
   'Segment range input label': [
-    { text: 'Unit', id: 11083749 },
-    { text: 'From', id: 11083751 },
-    { text: 'To',   id: 11083753 },
+    { text: 'Unit', id: 10903231 },
+    { text: 'From', id: 10903233 },
+    { text: 'To',   id: 10903235 },
   ],
 };
 
-const NEW_STRING_URL = (id) => `https://fresha.crowdin.com/editor/25/165451/en-/2223?view=comfortable&filter=basic&value=1#${id}`;
+const NEW_STRING_URL = (id) => `https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable&filter=basic&value=1#${id}`;
 
 const CROWDIN_URL = (label) => CROWDIN_LINKS[label] || CROWDIN_LINKS[label.toLowerCase()] || 'https://fresha.crowdin.com/u/projects/25';
 
@@ -1263,9 +1264,7 @@ const SEG_VALUES = {
 };
 
 const NEW_TEMPLATES = [
-  { name: 'Condition operators', color: '#7c3aed', group: 'Segment condition operator', note: 'Operator dropdown labels in the rule card. Used across number, date, string and categorical fields.' },
-  { name: 'Rule connectors',     color: '#0d9488', group: 'Segment rule connector',     note: '"Clients with" starts each rule. "where" introduces conditions. "and" joins multiple conditions.' },
-  { name: 'Range input labels',  color: '#d97706', group: 'Segment range input label',  note: '"From" and "To" label the range inputs for date/number. "Unit" labels the time unit dropdown.' },
+  { name: 'Range input labels',  color: '#d97706', group: 'Segment range input label',  note: 'Used as field labels inside numeric or date range inputs. Not part of the sentence — these are form labels.' },
 ];
 
 const TEMPLATES = [
@@ -1315,30 +1314,28 @@ const TEMPLATES = [
 
 // ── Custom builder Crowdin links (correct /all/ URL) ─────────────────────
 const CUSTOM_CROWDIN = {
-  'is less than':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083707',
-  'is exactly':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083709',
-  'is between':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083711',
-  'is more than':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083713',
-  'is at least':      'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083715',
-  'is at most':       'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083717',
-  'is in the past':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083719',
-  'is in the last':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083721',
-  'is on':            'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083723',
-  'is in the next':   'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083725',
-  'is in the future': 'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083727',
-  'is':               'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083729',
-  'is not':           'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083731',
-  'is any':           'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083733',
-  'is empty':         'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083735',
-  'is not empty':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083737',
-  'contains':         'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083739',
-  'does not contain': 'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083741',
-  'Clients with':     'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083743',
-  'where':            'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083745',
-  'and':              'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083747',
-  'Unit':             'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083749',
-  'From':             'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083751',
-  'To':               'https://fresha.crowdin.com/editor/25/all/en-/2223?view=comfortable#11083753',
+  'is less than':     'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903193',
+  'is exactly':       'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903195',
+  'is between':       'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903197',
+  'is more than':     'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903199',
+  'is in the past':   'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903201',
+  'is in the last':   'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903203',
+  'is on':            'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903205',
+  'is in the next':   'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903207',
+  'is in the future': 'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903209',
+  'is':               'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903211',
+  'is not':           'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903213',
+  'is any':           'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903215',
+  'is empty':         'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903217',
+  'is not empty':     'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903219',
+  'contains':         'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903221',
+  'does not contain': 'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903223',
+  'Clients with':     'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903225',
+  'where':            'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903227',
+  'and':              'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903229',
+  'Unit':             'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903231',
+  'From':             'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903233',
+  'To':               'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903235',
 };
 
 const ALL_CROWDIN = (label) =>
@@ -1392,8 +1389,6 @@ Object.assign(SEG_VALUES, {
     { label: 'is exactly',     hasVar: false, example: '0' },
     { label: 'is between',     hasVar: false, example: '50', exampleAfter: '200' },
     { label: 'is more than',   hasVar: false, example: '3' },
-    { label: 'is at least',    hasVar: false, example: '5' },
-    { label: 'is at most',     hasVar: false, example: '10' },
   ],
   '%{dateOp}': [
     { label: 'is in the past',   hasVar: false },
@@ -1467,6 +1462,7 @@ TEMPLATES.push(
 
 // ── State ──────────────────────────────────────────────────────────────────
 let activeTemplate = 0;
+let activeRefCard = -1;
 let selections = {};
 
 function countCombos(tmpl) {
@@ -1503,6 +1499,20 @@ function renderSidebar() {
   document.getElementById('new-seg-grid').innerHTML = custTemplates.map((t, i) =>
     navItem(t.name, t.color, countCombos(t).toLocaleString(), i, true, activeTemplate === stdEnd + i)
   ).join('');
+
+  document.getElementById('ref-grid').innerHTML = NEW_TEMPLATES.map((t, i) => {
+    const strings = NEW_STRINGS[t.group] || [];
+    const isActive = activeRefCard === i;
+    return `<li>
+      <button class="ion-nav-list-item h-500 px-150 text-s gap-75${isActive ? '" aria-current="page" data-current' : '"'}
+        onclick="selectRefCard(${i})"
+        style="width:100%;border:none;background:none;cursor:pointer;border-radius:var(--radius-s);font-family:var(--ion-font-body)">
+        <span style="width:8px;height:8px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
+        <span style="flex:1;text-align:left;color:var(--foreground-neutral)">${t.name}</span>
+        <span class="ion-badge rounded-rounded text-xs font-medium px-75 py-25 bg-neutral-faded fg-neutral">${strings.length}</span>
+      </button>
+    </li>`;
+  }).join('');
 }
 
 // ── Render helpers ─────────────────────────────────────────────────────────
@@ -1589,6 +1599,7 @@ function renderComboCount(tmpl) {
 }
 
 function render() {
+  if (activeRefCard >= 0) { selectRefCard(activeRefCard); return; }
   const tmpl = TEMPLATES[activeTemplate];
   renderSidebar();
   renderOptions(tmpl);
@@ -1600,8 +1611,57 @@ function render() {
 
 function selectTemplate(i) {
   activeTemplate = i;
+  activeRefCard = -1;
   selections = initSelections(TEMPLATES[i]);
   render();
+}
+
+function selectRefCard(i) {
+  activeRefCard = i;
+  activeTemplate = -1;
+  const ref = NEW_TEMPLATES[i];
+  const strings = NEW_STRINGS[ref.group] || [];
+
+  renderSidebar();
+
+  // Template bar: show context label
+  document.getElementById('template-display').innerHTML =
+    `<span class="tvar" style="color:${ref.color}">${ref.group}</span>`;
+
+  // Sentence area: show note
+  document.getElementById('sentence-display').innerHTML =
+    `<span style="color:var(--foreground-neutral-faded)">${ref.note}</span>`;
+
+  document.getElementById('combo-badge').textContent = strings.length + ' strings';
+
+  // Options: none
+  document.getElementById('options-panel').innerHTML = '';
+
+  // Breakdown: list all strings with Crowdin links and usage
+  const USAGE_MAP = {
+    'From': 'Start value of a numeric or date range',
+    'To':   'End value of a numeric or date range',
+    'Unit': 'Unit selector for compound conditions (e.g. months, days, years)',
+    'Clients with': 'Prefix of the first rule',
+    'where': 'Prefix of sub-conditions within a rule',
+    'and': 'Connector between conditions / rules',
+  };
+  document.getElementById('string-rows').innerHTML = strings.map(s => {
+    const url = ALL_CROWDIN(s.text);
+    const usage = USAGE_MAP[s.text] || '';
+    return `
+      <div class="string-card">
+        <div class="string-card-bar" style="background:${ref.color}"></div>
+        <div class="string-card-body">
+          <span class="string-card-var" style="color:${ref.color}">${ref.group}</span>
+          <span class="string-card-value">${s.text}</span>
+          ${usage ? `<span class="string-card-note">${usage}</span>` : ''}
+          ${url !== 'https://fresha.crowdin.com/u/projects/25'
+            ? `<a class="crowdin-link" href="${url}" target="_blank" rel="noopener">Open in Crowdin ↗</a>`
+            : ''}
+        </div>
+      </div>`;
+  }).join('');
 }
 
 function selectCustomTemplate(i) {
