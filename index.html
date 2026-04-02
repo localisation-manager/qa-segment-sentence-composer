@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 @layer base, ion, ion-utils;
-
+ 
 :root, [data-theme='dark'] {
   --foreground-neutral: #F5F5F5;
   --foreground-neutral-faded: #BFBFBF;
@@ -100,7 +100,7 @@
   --shadow-elevated: 0 2px 8px 0 rgba(0,0,0,.32), 0 4px 20px 0 rgba(0,0,0,.48);
   --shadow-base: 0 2px 4px 0 rgba(0,0,0,.24);
 }
-
+ 
 @layer ion-utils {
   .fg-neutral { color: var(--foreground-neutral); }
   .fg-neutral-faded { color: var(--foreground-neutral-faded); }
@@ -401,46 +401,46 @@
     transition-timing-function: ease-out;
     will-change: scale;
   }
-
+ 
   /* RAC pressed */
   .ion-button-base[data-pressed] {
     scale: 0.95;
   }
-
+ 
   /* Vanilla pressed */
   .ion-button-base:not([data-rac]):active:not(:disabled) {
     scale: 0.95;
   }
-
+ 
   /* RAC disabled */
   .ion-button-base[data-disabled] {
     cursor: not-allowed;
     transition: none;
   }
-
+ 
   /* Vanilla disabled */
   .ion-button-base:not([data-rac]):disabled {
     cursor: not-allowed;
     transition: none;
   }
-
+ 
   /* RAC focus-visible */
   .ion-button-base[data-focus-visible] {
     outline: 2px auto var(--foreground-neutral);
     outline-offset: 4px;
   }
-
+ 
   /* Vanilla focus-visible */
   .ion-button-base:not([data-rac]):focus-visible {
     outline: 2px auto var(--foreground-neutral);
     outline-offset: 4px;
   }
-
+ 
   .ion-button-base:focus:not([data-focus-visible]):not(:focus-visible) {
     outline: none;
   }
 }
-
+ 
 @layer ion {
   .ion-btn {
     font-family: var(--ion-font-body, sans-serif);
@@ -448,42 +448,42 @@
     white-space: nowrap;
     text-decoration: none;
   }
-
+ 
   .ion-btn-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-
+ 
   .ion-btn[data-size="s"] .ion-btn-icon {
     width: 16px;
     height: 16px;
   }
-
+ 
   .ion-btn[data-size="m"] .ion-btn-icon {
     width: 20px;
     height: 20px;
   }
-
+ 
   .ion-btn[data-size="l"] .ion-btn-icon {
     width: 24px;
     height: 24px;
   }
-
+ 
   /* --- Vanilla button visual variant states (hover / active / disabled) --- */
-
+ 
   /* Primary */
   .ion-button-base[data-visual="primary"]:not([data-rac]):hover:not(:disabled) {
     background-color: var(--background-primary-hover);
   }
-
+ 
   .ion-button-base[data-visual="primary"]:not([data-rac]):active:not(
       :disabled
     ) {
     background-color: var(--background-primary-active);
   }
-
+ 
   /* Secondary */
   .ion-button-base[data-visual="secondary"]:not([data-rac]):hover:not(
       :disabled
@@ -491,58 +491,58 @@
     background-color: var(--background-base-hover);
     border-color: var(--border-neutral-hover);
   }
-
+ 
   .ion-button-base[data-visual="secondary"]:not([data-rac]):active:not(
       :disabled
     ) {
     background-color: var(--background-base-active);
     border-color: var(--border-neutral-active);
   }
-
+ 
   /* Tertiary */
   .ion-button-base[data-visual="tertiary"]:not([data-rac]):hover:not(
       :disabled
     ) {
     background-color: var(--background-transparent-hover);
   }
-
+ 
   .ion-button-base[data-visual="tertiary"]:not([data-rac]):active:not(
       :disabled
     ) {
     background-color: var(--background-transparent-active);
   }
-
+ 
   /* Danger */
   .ion-button-base[data-visual="danger"]:not([data-rac]):hover:not(:disabled) {
     background-color: var(--background-danger-hover);
   }
-
+ 
   .ion-button-base[data-visual="danger"]:not([data-rac]):active:not(:disabled) {
     background-color: var(--background-danger-active);
   }
-
+ 
   /* Danger Secondary */
   .ion-button-base[data-visual="danger-secondary"]:not([data-rac]):hover:not(
       :disabled
     ) {
     background-color: var(--background-transparent-hover);
   }
-
+ 
   .ion-button-base[data-visual="danger-secondary"]:not([data-rac]):active:not(
       :disabled
     ) {
     background-color: var(--background-transparent-active);
   }
-
+ 
   /* On Loud */
   .ion-button-base[data-visual="onLoud"]:not([data-rac]):hover:not(:disabled) {
     background-color: var(--background-on-loud-hover);
   }
-
+ 
   .ion-button-base[data-visual="onLoud"]:not([data-rac]):active:not(:disabled) {
     background-color: var(--background-on-loud-active);
   }
-
+ 
   /* Vanilla disabled (all variants) */
   .ion-button-base:not([data-rac]):disabled {
     background-color: var(--background-disabled);
@@ -558,17 +558,17 @@
     border-style: solid;
     border-width: var(--border-width-1);
   }
-
+ 
   .ion-tag-icon {
     display: flex;
     flex-shrink: 0;
   }
-
+ 
   .ion-tag[data-size="s"] .ion-tag-icon {
     width: 12px;
     height: 12px;
   }
-
+ 
   .ion-tag[data-size="m"] .ion-tag-icon {
     width: 16px;
     height: 16px;
@@ -581,16 +581,16 @@
     justify-content: center;
     white-space: nowrap;
   }
-
+ 
   .ion-badge[data-size="s"] {
     overflow: hidden;
   }
-
+ 
   /* Ensure pill badge is at least as wide as it is tall (circular for single chars) */
   .ion-badge[data-size="m"] {
     min-inline-size: calc(var(--line-height-xs) + var(--spacing-25) * 2);
   }
-
+ 
   .ion-badge-sr-only {
     position: absolute;
     width: 1px;
@@ -616,13 +616,13 @@
     display: flex;
     flex-direction: column;
   }
-
+ 
   .ion-nav-list-list {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-
+ 
   .ion-nav-list-item {
     display: flex;
     align-items: center;
@@ -632,32 +632,32 @@
     transition-duration: 150ms;
     transition-timing-function: ease-out;
   }
-
+ 
   .ion-nav-list-item[data-disabled] {
     cursor: not-allowed;
   }
-
+ 
   .ion-nav-list-item[data-focus-visible] {
     outline: 2px auto var(--foreground-neutral);
     outline-offset: 4px;
   }
-
+ 
   .ion-nav-list-item:focus-visible {
     outline: 2px auto var(--foreground-neutral);
     outline-offset: 4px;
   }
-
+ 
   .ion-nav-list-item:focus:not(:focus-visible) {
     outline: none;
   }
 }
-
+ 
 @layer ion {
   .ion-nav-list-item {
     border-radius: var(--radius-s);
     color: var(--foreground-neutral);
   }
-
+ 
   /* Size variants via parent data-size */
   .ion-nav-list[data-size="s"] .ion-nav-list-item {
     block-size: var(--size-400);
@@ -665,142 +665,142 @@
     font-size: var(--font-size-xs);
     gap: var(--spacing-50);
   }
-
+ 
   .ion-nav-list[data-size="m"] .ion-nav-list-item {
     block-size: var(--size-500);
     padding-inline: var(--spacing-150);
     font-size: var(--font-size-s);
     gap: var(--spacing-75);
   }
-
+ 
   .ion-nav-list[data-size="l"] .ion-nav-list-item {
     block-size: var(--size-600);
     padding-inline: var(--spacing-200);
     font-size: var(--font-size-m);
     gap: var(--spacing-100);
   }
-
+ 
   /* Item states -- data attributes (set by React) */
   .ion-nav-list-item[data-hovered]:not([data-disabled]) {
     background-color: var(--background-base-hover);
   }
-
+ 
   .ion-nav-list-item[data-pressed]:not([data-disabled]) {
     background-color: var(--background-base-active);
   }
-
+ 
   .ion-nav-list-item[data-current] {
     background-color: var(--background-primary-faded);
     font-weight: var(--font-weight-semibold);
   }
-
+ 
   .ion-nav-list-item[data-current][data-hovered]:not([data-disabled]) {
     background-color: var(--background-base-hover);
   }
-
+ 
   .ion-nav-list-item[data-disabled] {
     color: var(--foreground-disabled);
   }
-
+ 
   /* Item states -- vanilla pseudo-class fallback (for contract visual tests / HTML-only) */
   .ion-nav-list:not([data-rac]) .ion-nav-list-item:hover:not([data-disabled]) {
     background-color: var(--background-base-hover);
   }
-
+ 
   .ion-nav-list:not([data-rac]) .ion-nav-list-item:active:not([data-disabled]) {
     background-color: var(--background-base-active);
   }
-
+ 
   .ion-nav-list:not([data-rac]) .ion-nav-list-item[aria-current="page"] {
     background-color: var(--background-primary-faded);
     font-weight: var(--font-weight-semibold);
   }
-
+ 
   .ion-nav-list:not([data-rac]) .ion-nav-list-item[aria-disabled="true"] {
     color: var(--foreground-disabled);
   }
-
+ 
   /* NavListTitle */
   .ion-nav-list-title {
     color: var(--foreground-neutral);
     font-weight: var(--font-weight-semibold);
     margin-block-end: var(--spacing-50);
   }
-
+ 
   .ion-nav-list[data-size="s"] .ion-nav-list-title {
     font-size: var(--font-size-s);
     padding-inline: var(--spacing-100);
   }
-
+ 
   .ion-nav-list[data-size="m"] .ion-nav-list-title {
     font-size: var(--font-size-m);
     padding-inline: var(--spacing-150);
   }
-
+ 
   .ion-nav-list[data-size="l"] .ion-nav-list-title {
     font-size: var(--font-size-l);
     padding-inline: var(--spacing-200);
   }
-
+ 
   /* Section heading */
   .ion-nav-list-section-heading {
     color: var(--foreground-neutral-faded);
     font-size: var(--font-size-xs);
     padding-block: var(--spacing-50);
   }
-
+ 
   .ion-nav-list[data-size="s"] .ion-nav-list-section-heading {
     padding-inline: var(--spacing-100);
   }
-
+ 
   .ion-nav-list[data-size="m"] .ion-nav-list-section-heading {
     padding-inline: var(--spacing-150);
   }
-
+ 
   .ion-nav-list[data-size="l"] .ion-nav-list-section-heading {
     padding-inline: var(--spacing-200);
   }
-
+ 
   /* Section spacing */
   .ion-nav-list-section {
     margin-block: var(--spacing-100);
   }
-
+ 
   .ion-nav-list-section:first-child {
     margin-block-start: 0;
   }
-
+ 
   /* Section nested list */
   .ion-nav-list-section-list {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-
+ 
   /* Footer */
   .ion-nav-list-footer {
     color: var(--foreground-neutral-faded);
     font-size: var(--font-size-xs);
     padding-block-start: var(--spacing-100);
   }
-
+ 
   .ion-nav-list[data-size="s"] .ion-nav-list-footer {
     padding-inline: var(--spacing-100);
   }
-
+ 
   .ion-nav-list[data-size="m"] .ion-nav-list-footer {
     padding-inline: var(--spacing-150);
   }
-
+ 
   .ion-nav-list[data-size="l"] .ion-nav-list-footer {
     padding-inline: var(--spacing-200);
   }
 }
-
-
+ 
+ 
 /* ── button: allow text wrapping ── */
 .ion-btn { white-space: normal; text-align: center; }
-
+ 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--ion-font-body);
@@ -810,7 +810,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+ 
 .topbar {
   background: var(--background-base);
   border-bottom: 1px solid var(--border-neutral-faded);
@@ -824,7 +824,7 @@ body {
 .topbar-title { font-size: var(--font-size-s); font-weight: var(--font-weight-semibold); }
 .topbar-sep { color: var(--border-neutral-faded); }
 .topbar-sub { font-size: var(--font-size-xs); color: var(--foreground-neutral-faded); font-family: var(--ion-font-mono); }
-
+ 
 .layout {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -832,7 +832,7 @@ body {
   overflow: hidden;
   height: calc(100vh - var(--size-700));
 }
-
+ 
 .sidebar {
   background: var(--background-base);
   border-right: 1px solid var(--border-neutral-faded);
@@ -855,9 +855,9 @@ body {
   background: var(--border-neutral-faded);
   margin: var(--spacing-75) var(--spacing-150);
 }
-
+ 
 .content { overflow-y: auto; display: flex; flex-direction: column; }
-
+ 
 .sentence-bar {
   background: var(--background-elevated);
   border-bottom: 1px solid var(--border-neutral-faded);
@@ -912,7 +912,7 @@ body {
   padding: 0 var(--spacing-50);
   border-radius: var(--radius-xs);
 }
-
+ 
 .right-area {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -953,7 +953,7 @@ body {
 }
 .option-btn:hover { background: var(--background-base-hover); color: var(--foreground-neutral); }
 .option-btn.selected { color: var(--foreground-neutral); font-weight: var(--font-weight-medium); }
-
+ 
 .breakdown {
   overflow-y: auto;
   padding: var(--spacing-300);
@@ -969,7 +969,7 @@ body {
   letter-spacing: 0.06em;
   margin-bottom: var(--spacing-50);
 }
-
+ 
 .string-card {
   background: var(--background-elevated);
   border: 1px solid var(--border-neutral-faded);
@@ -1005,7 +1005,7 @@ body {
 </style>
 </head>
 <body>
-
+ 
 <header class="topbar">
   <span class="topbar-title">Segment Sentence Composer</span>
   <span class="topbar-sep">·</span>
@@ -1016,7 +1016,7 @@ body {
        data-size="s" data-visual="secondary">Open Crowdin ↗</a>
   </span>
 </header>
-
+ 
 <div class="layout">
   <nav class="sidebar">
     <span class="sidebar-section-label">Standard segments</span>
@@ -1028,7 +1028,7 @@ body {
     <span class="sidebar-section-label">String reference</span>
     <ul class="ion-nav-list-list" id="ref-grid" style="list-style:none;padding:0;margin:0"></ul>
   </nav>
-
+ 
   <div style="display:flex;flex-direction:column;overflow:hidden">
     <div class="sentence-bar">
       <div class="sentence-meta">
@@ -1043,7 +1043,7 @@ body {
       </div>
       <div class="sentence-text" id="sentence-display"></div>
     </div>
-
+ 
     <div class="right-area">
       <div class="options-panel" id="options-panel"></div>
       <div class="breakdown">
@@ -1053,11 +1053,11 @@ body {
     </div>
   </div>
 </div>
-
+ 
 <script>
-
+ 
 const CROWDIN_EDITOR = (fileId) => `https://fresha.crowdin.com/editor/25/${fileId}/en-/2223?view=comfortable`;
-
+ 
 // Exact Crowdin file IDs per string, from original Excel hyperlinks
 const CROWDIN_LINKS = {
   '%{employeeCount} team members': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729362',
@@ -1131,7 +1131,7 @@ const CROWDIN_LINKS = {
   'who spent': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729096',
   'within the last': 'https://fresha.crowdin.com/editor/25/58614/en-?view=comfortable&filter=basic&value=1#3729142',
 };
-
+ 
 // New strings: custom segment rule builder (file 162763)
 const NEW_STRINGS = {
   'Segment condition operator': [
@@ -1162,48 +1162,12 @@ const NEW_STRINGS = {
     { text: 'From', id: 10903233 },
     { text: 'To',   id: 10903235 },
   ],
-  'Segment condition: Appointments': [
-    { text: 'Scheduled date',     url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048051' },
-    { text: 'Creation date',      url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048049' },
-    { text: 'Service',            url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816529' },
-    { text: 'Team member',        url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816531' },
-    { text: 'Location',           url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816527' },
-    { text: 'Appointment status', url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816525' },
-    { text: 'Appointment channel',url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816523' },
-  ],
-  'Segment condition: Sales': [
-    { text: 'Sale date',       url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048071' },
-    { text: 'Location',        url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816549' },
-    { text: 'Team member',     url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816559' },
-    { text: 'Item type',       url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816547' },
-    { text: 'Service name',    url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816555' },
-    { text: 'Product name',    url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816553' },
-    { text: 'Membership name', url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816551' },
-    { text: 'Status',          url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816557' },
-  ],
-  'Segment condition: Memberships': [
-    { text: 'Membership name',          url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816535' },
-    { text: 'Membership status',        url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816537' },
-    { text: 'Membership expiry date',   url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048059' },
-    { text: 'Membership purchase date', url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048061' },
-    { text: 'Membership sale value',    url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048063' },
-  ],
-  'Segment condition: Gift cards': [
-    { text: 'Gift card amount',        url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048053' },
-    { text: 'Gift card expiry date',   url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048055' },
-    { text: 'Gift card purchase date', url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048057' },
-    { text: 'Gift card status',        url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816533' },
-  ],
-  'Segment condition: Rewards': [
-    { text: 'Reward status',      url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816545' },
-    { text: 'Reward expiry date', url: 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#11048069' },
-  ],
 };
-
+ 
 const NEW_STRING_URL = (id) => `https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable&filter=basic&value=1#${id}`;
-
+ 
 const CROWDIN_URL = (label) => CROWDIN_LINKS[label] || CROWDIN_LINKS[label.toLowerCase()] || 'https://fresha.crowdin.com/u/projects/25';
-
+ 
 const SEG_COLORS = {
   "%{timeSegment}":                   { bg: "#ede9fe", text: "#6d28d9", bar: "#7c3aed" },
   "%{futureAppointmentsSegment}":     { bg: "#fef3c7", text: "#92400e", bar: "#d97706" },
@@ -1216,7 +1180,7 @@ const SEG_COLORS = {
   "%{previouslyBookedOnlineSegment}": { bg: "#f1f5f9", text: "#334155", bar: "#64748b" },
   "%{saleTargetSegment}":             { bg: "#e6f0ff", text: "#1e3a8a", bar: "#1565c0" },
 };
-
+ 
 const SEG_LABELS = {
   "%{timeSegment}":                   "time",
   "%{futureAppointmentsSegment}":     "future appointments",
@@ -1229,7 +1193,7 @@ const SEG_LABELS = {
   "%{previouslyBookedOnlineSegment}": "booked online",
   "%{saleTargetSegment}":             "sale target",
 };
-
+ 
 const SEG_NOTES = {
   "%{timeSegment}":                   "13 variants: past/future ranges. Appears mid-sentence.",
   "%{futureAppointmentsSegment}":     "Optional suffix. Blank = no filter. If selected, appends to end of sentence.",
@@ -1242,7 +1206,7 @@ const SEG_NOTES = {
   "%{previouslyBookedOnlineSegment}": "Fixed phrase — 1 variant only.",
   "%{saleTargetSegment}":             "Follows 'purchased'. 5 variants.",
 };
-
+ 
 const SEG_VALUES = {
   "%{timeSegment}": [
     { label: "in the last day", hasVar: false },
@@ -1298,16 +1262,11 @@ const SEG_VALUES = {
     { label: "gift cards", hasVar: false },
   ],
 };
-
+ 
 const NEW_TEMPLATES = [
-  { name: 'Segment condition: Appointments', color: '#2370EC', group: 'Segment condition: Appointments', note: 'Attribute dropdown options when the metric is appointment-based.' },
-  { name: 'Segment condition: Sales',        color: '#B7570B', group: 'Segment condition: Sales',        note: 'Attribute dropdown options when the metric is sales-based.' },
-  { name: 'Segment condition: Memberships',  color: '#6950F3', group: 'Segment condition: Memberships',  note: 'Attribute dropdown options when the metric is membership-based.' },
-  { name: 'Segment condition: Gift cards',   color: '#1F8900', group: 'Segment condition: Gift cards',   note: 'Attribute dropdown options when the metric is gift card-based.' },
-  { name: 'Segment condition: Rewards',      color: '#D4163A', group: 'Segment condition: Rewards',      note: 'Attribute dropdown options when the metric is reward-based.' },
   { name: 'Range input labels',  color: '#d97706', group: 'Segment range input label',  note: 'Used as field labels inside numeric or date range inputs. Not part of the sentence — these are form labels.' },
 ];
-
+ 
 const TEMPLATES = [
   {
     name: "New clients",
@@ -1352,7 +1311,7 @@ const TEMPLATES = [
     vars: ["%{timeSegment}", "%{minimumAmountSpentSegment}", "%{saleTargetSegment}", "%{locationSegment}", "%{futureAppointmentsSegment}"],
   },
 ];
-
+ 
 // ── Custom builder Crowdin links (correct /all/ URL) ─────────────────────
 const CUSTOM_CROWDIN = {
   'is less than':     'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903193',
@@ -1378,12 +1337,12 @@ const CUSTOM_CROWDIN = {
   'From':             'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903233',
   'To':               'https://fresha.crowdin.com/editor/25/162763/en-/2223?view=comfortable#10903235',
 };
-
+ 
 const ALL_CROWDIN = (label) =>
   CROWDIN_LINKS[label] || CROWDIN_LINKS[label.toLowerCase()] ||
   CUSTOM_CROWDIN[label] || CUSTOM_CROWDIN[label.toLowerCase()] ||
   'https://fresha.crowdin.com/u/projects/25';
-
+ 
 // ── Custom segment builder segment vars ──────────────────────────────────
 Object.assign(SEG_COLORS, {
   '%{numOp}':     { bg: '#201E45', text: '#8880FF', bar: '#6950F3' },
@@ -1397,7 +1356,7 @@ Object.assign(SEG_COLORS, {
   '%{whereConn}': { bg: '#082B26', text: '#23A99D', bar: '#0D9488' },
   '%{andConn}':   { bg: '#082B26', text: '#23A99D', bar: '#0D9488' },
 });
-
+ 
 Object.assign(SEG_LABELS, {
   '%{numOp}':     'number operator',
   '%{dateOp}':    'date operator',
@@ -1410,7 +1369,7 @@ Object.assign(SEG_LABELS, {
   '%{whereConn}': 'where',
   '%{andConn}':   'and',
 });
-
+ 
 Object.assign(SEG_NOTES, {
   '%{numOp}':     'Operator for number fields (e.g. total spend, number of appointments). 6 variants.',
   '%{dateOp}':    'Operator for date fields (e.g. last appointment date, birthday). 6 variants.',
@@ -1423,7 +1382,7 @@ Object.assign(SEG_NOTES, {
   '%{whereConn}': 'Introduces the first condition in a rule. Fixed — 1 variant.',
   '%{andConn}':   'Joins each additional condition. Fixed — 1 variant.',
 });
-
+ 
 Object.assign(SEG_VALUES, {
   '%{numOp}': [
     { label: 'is less than',   hasVar: false, example: '100' },
@@ -1461,7 +1420,7 @@ Object.assign(SEG_VALUES, {
   '%{whereConn}': [{ label: 'where',        hasVar: false }],
   '%{andConn}':   [{ label: 'and',          hasVar: false }],
 });
-
+ 
 TEMPLATES.push(
   {
     name: 'Number operator',
@@ -1499,13 +1458,13 @@ TEMPLATES.push(
     vars: ['%{ruleConn}', '%{whereConn}', '%{andConn}'],
   }
 );
-
-
+ 
+ 
 // ── State ──────────────────────────────────────────────────────────────────
 let activeTemplate = 0;
 let activeRefCard = -1;
 let selections = {};
-
+ 
 function countCombos(tmpl) {
   return tmpl.vars.reduce((acc, v) => acc * (SEG_VALUES[v] || [1]).length, 1);
 }
@@ -1514,7 +1473,7 @@ function initSelections(tmpl) {
   tmpl.vars.forEach(v => { s[v] = 0; });
   return s;
 }
-
+ 
 // ── Sidebar ────────────────────────────────────────────────────────────────
 function navItem(name, color, badge, idx, isNew, active) {
   return `<li>
@@ -1527,20 +1486,20 @@ function navItem(name, color, badge, idx, isNew, active) {
     </button>
   </li>`;
 }
-
+ 
 function renderSidebar() {
   const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
   const stdTemplates = stdEnd === -1 ? TEMPLATES : TEMPLATES.slice(0, stdEnd);
   const custTemplates = stdEnd === -1 ? [] : TEMPLATES.slice(stdEnd);
-
+ 
   document.getElementById('seg-type-grid').innerHTML = stdTemplates.map((t, i) =>
     navItem(t.name, t.color, countCombos(t).toLocaleString(), i, false, activeTemplate === i)
   ).join('');
-
+ 
   document.getElementById('new-seg-grid').innerHTML = custTemplates.map((t, i) =>
     navItem(t.name, t.color, countCombos(t).toLocaleString(), i, true, activeTemplate === stdEnd + i)
   ).join('');
-
+ 
   document.getElementById('ref-grid').innerHTML = NEW_TEMPLATES.map((t, i) => {
     const strings = NEW_STRINGS[t.group] || [];
     const isActive = activeRefCard === i;
@@ -1555,7 +1514,7 @@ function renderSidebar() {
     </li>`;
   }).join('');
 }
-
+ 
 // ── Render helpers ─────────────────────────────────────────────────────────
 function renderOptions(tmpl) {
   document.getElementById('options-panel').innerHTML = tmpl.vars.map(v => {
@@ -1574,7 +1533,7 @@ function renderOptions(tmpl) {
     </div>`;
   }).join('');
 }
-
+ 
 function renderSentenceDisplay(tmpl) {
   const parts = tmpl.template.split(/(%\{[^}]+\})/g);
   document.getElementById('sentence-display').innerHTML = parts.map(part => {
@@ -1584,14 +1543,17 @@ function renderSentenceDisplay(tmpl) {
       const val = (SEG_VALUES[match]||[])[selections[match]||0];
       if (!val || val.blank) return '';
       let exSuffix = val.example ? `<span style="opacity:.5;font-style:italic;margin-left:6px">${val.example}</span>` : '';
-      if (val.exampleAfter) exSuffix += `<span style="opacity:.5;margin-left:6px">and</span><span style="opacity:.5;font-style:italic;margin-left:6px">${val.exampleAfter}</span>`;
+      if (val.exampleAfter) {
+        const andCol = SEG_COLORS['%{andConn}'] || { bg:'#082B26',text:'#23A99D',bar:'#0D9488' };
+        exSuffix += `<span class="seg-chip" style="background:${andCol.bg};color:${andCol.text};border-color:${andCol.bar}40;margin-left:6px">and</span><span style="opacity:.5;font-style:italic;margin-left:6px">${val.exampleAfter}</span>`;
+      }
       return `<span class="seg-chip" style="background:${col.bg};color:${col.text};border-color:${col.bar}40">${val.label}</span>${exSuffix}`;
     }
     if (part.trim()) return `<span>${part}</span>`;
     return '';
   }).join('');
 }
-
+ 
 function renderTemplate(tmpl) {
   const parts = tmpl.template.split(/(%\{[^}]+\})/g);
   document.getElementById('template-display').innerHTML = parts.map(part =>
@@ -1600,7 +1562,7 @@ function renderTemplate(tmpl) {
       : `<span>${part}</span>`
   ).join('');
 }
-
+ 
 function renderBreakdown(tmpl) {
   document.getElementById('string-rows').innerHTML = tmpl.vars.map(v => {
     const col = SEG_COLORS[v] || { bg:'#333',text:'#ccc',bar:'#888' };
@@ -1634,11 +1596,11 @@ function renderBreakdown(tmpl) {
       </div>`;
   }).join('');
 }
-
+ 
 function renderComboCount(tmpl) {
   document.getElementById('combo-badge').textContent = countCombos(tmpl).toLocaleString() + ' combinations';
 }
-
+ 
 function render() {
   if (activeRefCard >= 0) { selectRefCard(activeRefCard); return; }
   const tmpl = TEMPLATES[activeTemplate];
@@ -1649,35 +1611,35 @@ function render() {
   renderBreakdown(tmpl);
   renderComboCount(tmpl);
 }
-
+ 
 function selectTemplate(i) {
   activeTemplate = i;
   activeRefCard = -1;
   selections = initSelections(TEMPLATES[i]);
   render();
 }
-
+ 
 function selectRefCard(i) {
   activeRefCard = i;
   activeTemplate = -1;
   const ref = NEW_TEMPLATES[i];
   const strings = NEW_STRINGS[ref.group] || [];
-
+ 
   renderSidebar();
-
+ 
   // Template bar: show context label
   document.getElementById('template-display').innerHTML =
     `<span class="tvar" style="color:${ref.color}">${ref.group}</span>`;
-
+ 
   // Sentence area: show note
   document.getElementById('sentence-display').innerHTML =
     `<span style="color:var(--foreground-neutral-faded)">${ref.note}</span>`;
-
+ 
   document.getElementById('combo-badge').textContent = strings.length + ' strings';
-
+ 
   // Options: none
   document.getElementById('options-panel').innerHTML = '';
-
+ 
   // Breakdown: list all strings with Crowdin links and usage
   const USAGE_MAP = {
     'From': 'Start value of a numeric or date range',
@@ -1688,7 +1650,7 @@ function selectRefCard(i) {
     'and': 'Connector between conditions / rules',
   };
   document.getElementById('string-rows').innerHTML = strings.map(s => {
-    const url = s.url || ALL_CROWDIN(s.text);
+    const url = ALL_CROWDIN(s.text);
     const usage = USAGE_MAP[s.text] || '';
     return `
       <div class="string-card">
@@ -1704,12 +1666,12 @@ function selectRefCard(i) {
       </div>`;
   }).join('');
 }
-
+ 
 function selectCustomTemplate(i) {
   const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
   selectTemplate(stdEnd + i);
 }
-
+ 
 function selectVal(varName, idx) {
   selections[varName] = idx;
   const tmpl = TEMPLATES[activeTemplate];
@@ -1717,7 +1679,7 @@ function selectVal(varName, idx) {
   renderSentenceDisplay(tmpl);
   renderBreakdown(tmpl);
 }
-
+ 
 function copyStr(str, btn) {
   navigator.clipboard.writeText(str).then(() => {
     const orig = btn.textContent;
@@ -1726,8 +1688,9 @@ function copyStr(str, btn) {
     setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
   });
 }
-
+ 
 selectTemplate(0);
 </script>
 </body>
 </html>
+ 
