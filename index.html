@@ -1025,6 +1025,9 @@ body {
     <span class="sidebar-section-label">Custom segment builder</span>
     <ul class="ion-nav-list-list" id="new-seg-grid" style="list-style:none;padding:0;margin:0"></ul>
     <div class="sidebar-divider"></div>
+    <span class="sidebar-section-label">Segment descriptions</span>
+    <ul class="ion-nav-list-list" id="desc-seg-grid" style="list-style:none;padding:0;margin:0"></ul>
+    <div class="sidebar-divider"></div>
     <span class="sidebar-section-label">String reference</span>
     <ul class="ion-nav-list-list" id="ref-grid" style="list-style:none;padding:0;margin:0"></ul>
   </nav>
@@ -1521,6 +1524,7 @@ const SEG_VALUES = {
     { label: "on %{date}", hasVar: true },
     { label: "before %{date}", hasVar: true },
     { label: "between %{from} and %{to}", hasVar: true },
+    { label: "(no time filter)", hasVar: false, blank: true },
   ],
   "%{apptCondition}": [
     { label: "Appointment channel", hasVar: false },
@@ -1976,6 +1980,44 @@ const CUSTOM_CROWDIN = {
   'before %{date}':               'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880743',
   'between %{from} and %{to}':    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880745',
   'Website':                       'https://fresha.crowdin.com/editor/25/52278/en-?view=comfortable#3190078',
+  // ── Static text fragments for description templates ─────────────────────
+  // These link to the parent rule pattern that contains them
+  'Clients with no':          'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816707',
+  'Clients with birthdays':   'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816695',
+  'Clients added':            'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816679',
+  'Clients whose':            'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055401',
+  // Count comparison labels → link to parent rule pattern
+  'more than %{value}':      'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816703',
+  'fewer than %{value}':     'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816699',
+  'exactly %{value}':        'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816697',
+  '%{value} or more':        'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816691',
+  '%{value} or fewer':       'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880733',
+  // Amount comparison labels → link to parent rule pattern
+  'with %{amount}':                            'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880727',
+  'with %{amount} or less':                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880729',
+  'with %{amount} or more':                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880731',
+  'with exactly %{amount}':                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880737',
+  'with less than %{amount}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880739',
+  'with more than %{amount}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880741',
+  'with between %{from_amount} and %{to_amount}': 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880735',
+  // Field operator labels → link to parent "whose" rule pattern
+  'contains %{value}':           'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055395',
+  'does not contain %{value}':   'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055397',
+  'is %{time}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055399',
+  'is %{value}':                 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055401',
+  'is %{value} or less':         'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055403',
+  'is %{value} or more':         'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055405',
+  'is between %{from} and %{to}':'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055407',
+  'is less than %{value}':       'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055413',
+  'is more than %{value}':       'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055415',
+  'is not %{value}':             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055417',
+  'is on %{value}':              'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055419',
+  // Field selection labels → link to parent rule pattern
+  'with':             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816689',
+  'without':          'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816709',
+  'with selected':    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13991699',
+  'without selected': 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13991701',
+  'with any':         'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055421',
 };
 
 const ALL_CROWDIN = (label) =>
@@ -2003,6 +2045,13 @@ Object.assign(SEG_COLORS, {
   '%{entity}':    { bg: '#2d1b4e', text: '#c4b5fd', bar: '#8b5cf6' },
   '%{filterFld}': { bg: '#1a2332', text: '#93c5fd', bar: '#3b82f6' },
   '%{segField}':  { bg: '#1f2d1a', text: '#bef264', bar: '#84cc16' },
+  // Description-level templates
+  '%{rulePattern}':   { bg: '#1a2e2e', text: '#5eead4', bar: '#14b8a6' },
+  '%{descCountOp}':   { bg: '#082b26', text: '#5eead4', bar: '#0d9488' },
+  '%{descAmountOp}':  { bg: '#2e2a1a', text: '#fbbf24', bar: '#d97706' },
+  '%{descFieldOp}':   { bg: '#1a2332', text: '#93c5fd', bar: '#3b82f6' },
+  '%{descFieldSel}':  { bg: '#1f2d1a', text: '#bef264', bar: '#84cc16' },
+  '%{ruleUIMsg}':     { bg: '#1e1e2e', text: '#a5b4fc', bar: '#6366f1' },
 });
 
 Object.assign(SEG_LABELS, {
@@ -2023,6 +2072,13 @@ Object.assign(SEG_LABELS, {
   '%{entity}':    'segment entity',
   '%{filterFld}': 'filter field',
   '%{segField}':  'segment field',
+  // Description-level templates
+  '%{rulePattern}':   'rule pattern',
+  '%{descCountOp}':   'count comparison',
+  '%{descAmountOp}':  'amount comparison',
+  '%{descFieldOp}':   'field operator',
+  '%{descFieldSel}':  'field selector',
+  '%{ruleUIMsg}':     'rule UI message',
 });
 
 Object.assign(SEG_NOTES, {
@@ -2043,6 +2099,13 @@ Object.assign(SEG_NOTES, {
   '%{entity}':    'The entity noun after "Clients with" — defines what is being counted/filtered. 11 variants.',
   '%{filterFld}': 'Lowercase field name used in entity-level sub-conditions (e.g. "where [scheduled date] is in the last…"). 21 variants.',
   '%{segField}':  'Lowercase field name for client-level conditions. These are the field labels in "where"/"and" clauses for client detail segments. 16 variants.',
+  // Description-level templates
+  '%{rulePattern}':   'Composable rule pattern from describe_rules.ex — all 38 patterns. Reference view with %{} placeholders.',
+  '%{descCountOp}':   'Count comparison before entity — e.g. "more than %{value}", "exactly %{value}". 6 variants.',
+  '%{descAmountOp}':  'Amount comparison before "in %{entity}" — e.g. "with %{amount} or more", "with less than %{amount}". 7 variants.',
+  '%{descFieldOp}':   'Field operator in "whose %{field}" patterns — e.g. "is %{value}", "contains %{value}". 13 variants.',
+  '%{descFieldSel}':  'Field selection prefix — "with", "without", "with selected", "without selected", "with any". 5 variants.',
+  '%{ruleUIMsg}':     'UI messages for segment rule management. 3 standalone strings.',
 });
 
 Object.assign(SEG_VALUES, {
@@ -2184,6 +2247,92 @@ Object.assign(SEG_VALUES, {
     { label: 'added date',        hasVar: false },
     { label: 'birthday',          hasVar: false },
   ],
+  // ── Description-level: composable rule patterns (from describe_rules.ex) ──
+  '%{rulePattern}': [
+    { label: '%{entity} %{time}',                                              hasVar: true },
+    { label: 'added %{time}',                                                  hasVar: true },
+    { label: 'with %{entity}',                                                 hasVar: true },
+    { label: 'with %{entity} %{time}',                                        hasVar: true },
+    { label: 'with %{field}',                                                  hasVar: true },
+    { label: 'with %{value} or more %{entity} %{time}',                       hasVar: true },
+    { label: 'with between %{from} and %{to} %{entity} %{time}',              hasVar: true },
+    { label: 'with birthdays %{time}',                                         hasVar: true },
+    { label: 'with exactly %{value} %{entity} %{time}',                       hasVar: true },
+    { label: 'with fewer than %{value} %{entity} %{time}',                    hasVar: true },
+    { label: 'with more than %{value} %{entity} %{time}',                     hasVar: true },
+    { label: 'with no %{entity}',                                              hasVar: true },
+    { label: 'with no %{entity} %{time}',                                     hasVar: true },
+    { label: 'without %{field}',                                               hasVar: true },
+    { label: 'with %{amount} in %{entity} %{time}',                           hasVar: true },
+    { label: 'with %{amount} or less in %{entity} %{time}',                   hasVar: true },
+    { label: 'with %{amount} or more in %{entity} %{time}',                   hasVar: true },
+    { label: 'with %{value} or fewer %{entity} %{time}',                      hasVar: true },
+    { label: 'with between %{from_amount} and %{to_amount} in %{entity} %{time}', hasVar: true },
+    { label: 'with exactly %{amount} in %{entity} %{time}',                   hasVar: true },
+    { label: 'with less than %{amount} in %{entity} %{time}',                 hasVar: true },
+    { label: 'with more than %{amount} in %{entity} %{time}',                 hasVar: true },
+    { label: 'with selected %{field}',                                         hasVar: true },
+    { label: 'without selected %{field}',                                      hasVar: true },
+    { label: 'whose %{field} contains %{value}',                               hasVar: true },
+    { label: 'whose %{field} does not contain %{value}',                        hasVar: true },
+    { label: 'whose %{field} is %{time}',                                      hasVar: true },
+    { label: 'whose %{field} is %{value}',                                     hasVar: true },
+    { label: 'whose %{field} is %{value} or less',                             hasVar: true },
+    { label: 'whose %{field} is %{value} or more',                             hasVar: true },
+    { label: 'whose %{field} is between %{from} and %{to}',                   hasVar: true },
+    { label: 'whose %{field} is in the future',                                hasVar: false },
+    { label: 'whose %{field} is in the past',                                  hasVar: false },
+    { label: 'whose %{field} is less than %{value}',                           hasVar: true },
+    { label: 'whose %{field} is more than %{value}',                           hasVar: true },
+    { label: 'whose %{field} is not %{value}',                                 hasVar: true },
+    { label: 'whose %{field} is on %{value}',                                  hasVar: true },
+    { label: 'with any %{field}',                                              hasVar: true },
+  ],
+  // ── Decomposed description variables ────────────────────────────────────
+  '%{descCountOp}': [
+    { label: 'more than %{value}',            hasVar: true },
+    { label: 'fewer than %{value}',           hasVar: true },
+    { label: 'exactly %{value}',              hasVar: true },
+    { label: '%{value} or more',              hasVar: true },
+    { label: '%{value} or fewer',             hasVar: true },
+    { label: 'between %{from} and %{to}',     hasVar: true },
+  ],
+  '%{descAmountOp}': [
+    { label: 'with %{amount}',                            hasVar: true },
+    { label: 'with %{amount} or less',                    hasVar: true },
+    { label: 'with %{amount} or more',                    hasVar: true },
+    { label: 'with exactly %{amount}',                    hasVar: true },
+    { label: 'with less than %{amount}',                  hasVar: true },
+    { label: 'with more than %{amount}',                  hasVar: true },
+    { label: 'with between %{from_amount} and %{to_amount}', hasVar: true },
+  ],
+  '%{descFieldOp}': [
+    { label: 'contains %{value}',             hasVar: true },
+    { label: 'does not contain %{value}',     hasVar: true },
+    { label: 'is %{time}',                    hasVar: true },
+    { label: 'is %{value}',                   hasVar: true },
+    { label: 'is %{value} or less',           hasVar: true },
+    { label: 'is %{value} or more',           hasVar: true },
+    { label: 'is between %{from} and %{to}',  hasVar: true },
+    { label: 'is in the future',              hasVar: false },
+    { label: 'is in the past',                hasVar: false },
+    { label: 'is less than %{value}',         hasVar: true },
+    { label: 'is more than %{value}',         hasVar: true },
+    { label: 'is not %{value}',               hasVar: true },
+    { label: 'is on %{value}',                hasVar: true },
+  ],
+  '%{descFieldSel}': [
+    { label: 'with',             hasVar: false },
+    { label: 'without',          hasVar: false },
+    { label: 'with selected',    hasVar: false },
+    { label: 'without selected', hasVar: false },
+    { label: 'with any',         hasVar: false },
+  ],
+  '%{ruleUIMsg}': [
+    { label: 'Restore the original segment rules',                    hasVar: false },
+    { label: 'Segment rules are already using the original settings', hasVar: false },
+    { label: 'Original segment rules restored',                       hasVar: false },
+  ],
 });
 
 TEMPLATES.push(
@@ -2193,14 +2342,191 @@ TEMPLATES.push(
     section: 'custom',
     template: '%{ruleConn} %{mainAttr} %{numOp} %{whereConn} %{subAttr1} %{dateOp} %{unitSelect} %{andConn} %{subAttr2} %{catOp}',
     vars: ['%{ruleConn}', '%{mainAttr}', '%{numOp}', '%{whereConn}', '%{subAttr1}', '%{dateOp}', '%{unitSelect}', '%{andConn}', '%{subAttr2}', '%{catOp}'],
-  }
+  },
+  // ── Description templates (lowercase, natural sentences) ──────────────
+  {
+    name: 'Desc: entity + time',
+    color: '#14b8a6',
+    section: 'description',
+    template: 'Clients with %{entity} %{segTime}',
+    vars: ['%{entity}', '%{segTime}'],
+  },
+  {
+    name: 'Desc: no entity',
+    color: '#f43f5e',
+    section: 'description',
+    template: 'Clients with no %{entity} %{segTime}',
+    vars: ['%{entity}', '%{segTime}'],
+  },
+  {
+    name: 'Desc: birthdays',
+    color: '#ec4899',
+    section: 'description',
+    template: 'Clients with birthdays %{segTime}',
+    vars: ['%{segTime}'],
+  },
+  {
+    name: 'Desc: added date',
+    color: '#8b5cf6',
+    section: 'description',
+    template: 'Clients added %{segTime}',
+    vars: ['%{segTime}'],
+  },
+  {
+    name: 'Desc: entity count',
+    color: '#0d9488',
+    section: 'description',
+    template: 'Clients with %{descCountOp} %{entity} %{segTime}',
+    vars: ['%{descCountOp}', '%{entity}', '%{segTime}'],
+  },
+  {
+    name: 'Desc: entity amount',
+    color: '#d97706',
+    section: 'description',
+    template: 'Clients %{descAmountOp} in %{entity} %{segTime}',
+    vars: ['%{descAmountOp}', '%{entity}', '%{segTime}'],
+  },
+  {
+    name: 'Desc: field check',
+    color: '#3b82f6',
+    section: 'description',
+    template: 'Clients whose %{segField} %{descFieldOp}',
+    vars: ['%{segField}', '%{descFieldOp}'],
+  },
+  {
+    name: 'Desc: field selection',
+    color: '#84cc16',
+    section: 'description',
+    template: 'Clients %{descFieldSel} %{segField}',
+    vars: ['%{descFieldSel}', '%{segField}'],
+  },
+  {
+    name: 'All patterns (reference)',
+    color: '#6b7280',
+    section: 'description',
+    template: 'Clients %{rulePattern}',
+    vars: ['%{rulePattern}'],
+  },
+  {
+    name: 'Rule UI messages',
+    color: '#6366f1',
+    section: 'description',
+    template: '%{ruleUIMsg}',
+    vars: ['%{ruleUIMsg}'],
+  },
 );
 
+
+// ── Inner variable fill-in values ─────────────────────────────────────────
+// These let translators expand the %{} placeholders inside selected values
+// (e.g., see "in the last 3 weeks" instead of "in the last %{count} %{unit}")
+const INNER_VARS = {
+  '%{count}': {
+    label: 'count',
+    values: ['1', '2', '3', '5', '7', '14', '30'],
+    color: { bg: '#2d1b4e', text: '#c4b5fd', bar: '#8b5cf6' },
+    note: 'Numeric value filled at runtime.',
+  },
+  '%{unit}': {
+    label: 'time unit',
+    values: ['days', 'weeks', 'months'],
+    color: { bg: '#1a2332', text: '#93c5fd', bar: '#3b82f6' },
+    note: 'Time unit — each has its own Crowdin string.',
+  },
+  '%{date}': {
+    label: 'date',
+    values: ['Jan 15 2025', 'Jun 1 2025', 'Dec 31 2025'],
+    color: { bg: '#2e2a1a', text: '#fbbf24', bar: '#d97706' },
+    note: 'Date value filled at runtime.',
+  },
+  '%{from}': {
+    label: 'from',
+    values: ['Jan 1 2025', '0', '50'],
+    color: { bg: '#421015', text: '#fca5a5', bar: '#ef4444' },
+    note: 'Range start — filled at runtime.',
+  },
+  '%{to}': {
+    label: 'to',
+    values: ['Dec 31 2025', '100', '500'],
+    color: { bg: '#421015', text: '#fca5a5', bar: '#ef4444' },
+    note: 'Range end — filled at runtime.',
+  },
+  '%{value}': {
+    label: 'value',
+    values: ['5', '100', 'Female', 'Active', 'Completed'],
+    color: { bg: '#1f2d1a', text: '#bef264', bar: '#84cc16' },
+    note: 'Dynamic value — number, status, or text.',
+  },
+  '%{amount}': {
+    label: 'amount',
+    values: ['$50', '$100', '$500', '$1,000'],
+    color: { bg: '#2e2a1a', text: '#fbbf24', bar: '#d97706' },
+    note: 'Monetary amount filled at runtime.',
+  },
+  '%{from_amount}': {
+    label: 'from amount',
+    values: ['$50', '$100'],
+    color: { bg: '#421015', text: '#fca5a5', bar: '#ef4444' },
+    note: 'Amount range start.',
+  },
+  '%{to_amount}': {
+    label: 'to amount',
+    values: ['$200', '$500', '$1,000'],
+    color: { bg: '#421015', text: '#fca5a5', bar: '#ef4444' },
+    note: 'Amount range end.',
+  },
+  '%{time}': {
+    label: 'time',
+    values: ['in the last 2 weeks', 'in the past', 'in the future'],
+    color: { bg: '#ede9fe', text: '#6d28d9', bar: '#7c3aed' },
+    note: 'Time expression — same as Segment time patterns.',
+  },
+  '%{entity}': {
+    label: 'entity',
+    values: ['appointments', 'sales', 'gift cards', 'memberships', 'rewards'],
+    color: { bg: '#2d1b4e', text: '#c4b5fd', bar: '#8b5cf6' },
+    note: 'Entity noun — same as Segment entity values.',
+  },
+  '%{field}': {
+    label: 'field',
+    values: ['birthday', 'gender', 'age', 'email address', 'loyalty status', 'tags'],
+    color: { bg: '#1f2d1a', text: '#bef264', bar: '#84cc16' },
+    note: 'Client field — same as segment field values.',
+  },
+};
+
+// Expand inner %{} in a label to their selected fill-in values (returns HTML)
+function expandInnerVars(label) {
+  return label.replace(/%\{([^}]+)\}/g, (match) => {
+    const iv = INNER_VARS[match];
+    if (!iv) return match;
+    const idx = innerSelections[match] || 0;
+    const val = iv.values[idx];
+    return `<span style="background:${iv.color.bg};color:${iv.color.text};border:1px solid ${iv.color.bar}40;padding:1px 6px;border-radius:4px;font-weight:500">${val}</span>`;
+  });
+}
+
+// Get list of inner vars active in currently selected values
+function getActiveInnerVars(tmpl) {
+  const active = new Set();
+  tmpl.vars.forEach(v => {
+    const val = (SEG_VALUES[v]||[])[selections[v]||0];
+    if (val && val.hasVar && val.label) {
+      const matches = val.label.matchAll(/%\{([^}]+)\}/g);
+      for (const m of matches) {
+        const key = '%{' + m[1] + '}';
+        if (INNER_VARS[key]) active.add(key);
+      }
+    }
+  });
+  return [...active];
+}
 
 // ── State ──────────────────────────────────────────────────────────────────
 let activeTemplate = 0;
 let activeRefCard = -1;
 let selections = {};
+let innerSelections = {};
 
 function countCombos(tmpl) {
   return tmpl.vars.reduce((acc, v) => acc * (SEG_VALUES[v] || [1]).length, 1);
@@ -2210,12 +2536,17 @@ function initSelections(tmpl) {
   tmpl.vars.forEach(v => { s[v] = 0; });
   return s;
 }
+function initInnerSelections() {
+  const s = {};
+  Object.keys(INNER_VARS).forEach(k => { s[k] = 0; });
+  return s;
+}
 
 // ── Sidebar ────────────────────────────────────────────────────────────────
-function navItem(name, color, badge, idx, isNew, active) {
+function navItem(name, color, badge, absIdx, active) {
   return `<li>
     <button class="ion-nav-list-item h-500 px-150 text-s gap-75${active ? '" aria-current="page" data-current' : '"'}
-      onclick="${isNew ? 'selectCustomTemplate' : 'selectTemplate'}(${idx})"
+      onclick="selectTemplate(${absIdx})"
       style="width:100%;border:none;background:none;cursor:pointer;border-radius:var(--radius-s);font-family:var(--ion-font-body)">
       <span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span>
       <span style="flex:1;text-align:left;color:var(--foreground-neutral)">${name}</span>
@@ -2225,16 +2556,24 @@ function navItem(name, color, badge, idx, isNew, active) {
 }
 
 function renderSidebar() {
-  const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
-  const stdTemplates = stdEnd === -1 ? TEMPLATES : TEMPLATES.slice(0, stdEnd);
-  const custTemplates = stdEnd === -1 ? [] : TEMPLATES.slice(stdEnd);
+  const custStart = TEMPLATES.findIndex(t => t.section === 'custom');
+  const descStart = TEMPLATES.findIndex(t => t.section === 'description');
+  const stdEnd = custStart === -1 ? (descStart === -1 ? TEMPLATES.length : descStart) : custStart;
+  const custEnd = descStart === -1 ? TEMPLATES.length : descStart;
+  const stdTemplates = TEMPLATES.slice(0, stdEnd);
+  const custTemplates = custStart === -1 ? [] : TEMPLATES.slice(custStart, custEnd);
+  const descTemplates = descStart === -1 ? [] : TEMPLATES.slice(descStart);
 
   document.getElementById('seg-type-grid').innerHTML = stdTemplates.map((t, i) =>
-    navItem(t.name, t.color, countCombos(t).toLocaleString(), i, false, activeTemplate === i)
+    navItem(t.name, t.color, countCombos(t).toLocaleString(), i, activeTemplate === i)
   ).join('');
 
   document.getElementById('new-seg-grid').innerHTML = custTemplates.map((t, i) =>
-    navItem(t.name, t.color, countCombos(t).toLocaleString(), i, true, activeTemplate === stdEnd + i)
+    navItem(t.name, t.color, countCombos(t).toLocaleString(), custStart + i, activeTemplate === custStart + i)
+  ).join('');
+
+  document.getElementById('desc-seg-grid').innerHTML = descTemplates.map((t, i) =>
+    navItem(t.name, t.color, countCombos(t).toLocaleString(), descStart + i, activeTemplate === descStart + i)
   ).join('');
 
   document.getElementById('ref-grid').innerHTML = NEW_TEMPLATES.map((t, i) => {
@@ -2255,7 +2594,7 @@ function renderSidebar() {
 
 // ── Render helpers ─────────────────────────────────────────────────────────
 function renderOptions(tmpl) {
-  document.getElementById('options-panel').innerHTML = tmpl.vars.map(v => {
+  let html = tmpl.vars.map(v => {
     const col = SEG_COLORS[v] || { bg:'#333',text:'#ccc',bar:'#888' };
     const vals = SEG_VALUES[v] || [];
     const selIdx = selections[v] || 0;
@@ -2270,6 +2609,29 @@ function renderOptions(tmpl) {
       </div>
     </div>`;
   }).join('');
+
+  // Inner variable fill-in groups (for %{count}, %{unit}, %{value}, etc.)
+  const innerVars = getActiveInnerVars(tmpl);
+  if (innerVars.length > 0) {
+    html += `<div style="border-top:1px solid var(--border-neutral-faded);margin:16px 0 12px"></div>`;
+    html += `<div style="color:var(--foreground-neutral-faded);font-size:var(--font-size-2xs);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;font-weight:600">Fill-in values</div>`;
+    innerVars.forEach(iv => {
+      const cfg = INNER_VARS[iv];
+      const selIdx = innerSelections[iv] || 0;
+      html += `<div>
+        <div class="option-group-label" style="color:${cfg.color.text}">${cfg.label} <span style="opacity:.5;font-size:var(--font-size-2xs)">${iv}</span></div>
+        <div class="option-values">
+          ${cfg.values.map((val, vi) => `
+            <button class="option-btn${vi===selIdx?' selected':''}"
+              style="${vi===selIdx?`background:${cfg.color.bg};color:${cfg.color.text};border-color:${cfg.color.bar}40`:''}"
+              onclick="selectInnerVal('${iv}',${vi})">${val}</button>
+          `).join('')}
+        </div>
+      </div>`;
+    });
+  }
+
+  document.getElementById('options-panel').innerHTML = html;
 }
 
 function renderSentenceDisplay(tmpl) {
@@ -2285,7 +2647,8 @@ function renderSentenceDisplay(tmpl) {
         const andCol = SEG_COLORS['%{andConn}'] || { bg:'#082B26',text:'#23A99D',bar:'#0D9488' };
         exSuffix += `<span class="seg-chip" style="background:${andCol.bg};color:${andCol.text};border-color:${andCol.bar}40;margin-left:6px">and</span><span style="opacity:.5;font-style:italic;margin-left:6px">${val.exampleAfter}</span>`;
       }
-      return `<span class="seg-chip" style="background:${col.bg};color:${col.text};border-color:${col.bar}40">${val.label}</span>${exSuffix}`;
+      const chipContent = val.hasVar ? expandInnerVars(val.label) : val.label;
+      return `<span class="seg-chip" style="background:${col.bg};color:${col.text};border-color:${col.bar}40">${chipContent}</span>${exSuffix}`;
     }
     if (part.trim()) return `<span>${part}</span>`;
     return '';
@@ -2392,6 +2755,41 @@ function renderBreakdown(tmpl) {
       </div>`;
   }).join('');
 
+  // 4. Inner variable fill-in cards (for %{count}, %{unit}, %{value}, etc.)
+  const innerVars = getActiveInnerVars(tmpl);
+  if (innerVars.length > 0) {
+    html += `<div style="border-top:1px solid var(--border-neutral-faded);margin:16px 0 8px;padding-top:12px">
+      <span style="color:var(--foreground-neutral-faded);font-size:var(--font-size-2xs);text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Fill-in values (runtime placeholders)</span>
+    </div>`;
+    innerVars.forEach(iv => {
+      const cfg = INNER_VARS[iv];
+      const selIdx = innerSelections[iv] || 0;
+      const val = cfg.values[selIdx];
+      const url = ALL_CROWDIN(val);
+      const fallbackUrl = 'https://fresha.crowdin.com/u/projects/25';
+      const hasUrl = url !== fallbackUrl;
+      html += `
+        <div class="string-card">
+          <div class="string-card-bar" style="background:${cfg.color.bar}"></div>
+          <div class="string-card-body">
+            <span class="string-card-var" style="color:${cfg.color.text}">${iv}</span>
+            <span class="string-card-value">${val}</span>
+            <span class="string-card-note">${cfg.note}</span>
+          </div>
+          <div class="string-card-actions">
+            ${hasUrl
+              ? `<a href="${url}" target="_blank"
+                   class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
+                   data-visual="primary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)">
+                   Open in Crowdin ↗
+                 </a>`
+              : `<span style="font-size:var(--font-size-xs);color:var(--foreground-ghost)">Runtime value</span>`
+            }
+          </div>
+        </div>`;
+    });
+  }
+
   document.getElementById('string-rows').innerHTML = html;
 }
 
@@ -2415,6 +2813,7 @@ function selectTemplate(i) {
   activeTemplate = i;
   activeRefCard = -1;
   selections = initSelections(TEMPLATES[i]);
+  innerSelections = initInnerSelections();
   render();
 }
 
@@ -2466,13 +2865,16 @@ function selectRefCard(i) {
   }).join('');
 }
 
-function selectCustomTemplate(i) {
-  const stdEnd = TEMPLATES.findIndex(t => t.section === 'custom');
-  selectTemplate(stdEnd + i);
-}
-
 function selectVal(varName, idx) {
   selections[varName] = idx;
+  const tmpl = TEMPLATES[activeTemplate];
+  renderOptions(tmpl);
+  renderSentenceDisplay(tmpl);
+  renderBreakdown(tmpl);
+}
+
+function selectInnerVal(varName, idx) {
+  innerSelections[varName] = idx;
   const tmpl = TEMPLATES[activeTemplate];
   renderOptions(tmpl);
   renderSentenceDisplay(tmpl);
