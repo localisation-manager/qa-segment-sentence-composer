@@ -1109,12 +1109,12 @@ const CROWDIN_LINKS = {
   'at least %{amount}': 'https://fresha.crowdin.com/editor/25/80659/en-/2223?view=comfortable&filter=basic&value=1#5297263',
   'between %{dateFrom} and %{dateTo}': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729342',
   'gift cards': 'https://fresha.crowdin.com/editor/25/58478/en-/2223?view=comfortable&filter=basic&value=1#3722462',
-  'in the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723224',
+  'In the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723224',
   'in the last %{dayCount} days': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729330',
-  'in the last %{monthCount} months': 'https://fresha.crowdin.com/editor/25/113354/en-/2223?view=comfortable&filter=basic&value=1#6752603',
+  'in the last %{monthsCount} months': 'https://fresha.crowdin.com/editor/25/113354/en-/2223?view=comfortable&filter=basic&value=1#6752603',
   'in the last %{weekCount} weeks': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729332',
   'in the last day': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729330',
-  'in the last month': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729334',
+  'in the last %{monthCount} months': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729334',
   'in the last week': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729332',
   'in the next %{dayCount} days': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729336',
   'in the next %{monthCount} months': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729340',
@@ -1127,7 +1127,7 @@ const CROWDIN_LINKS = {
   'selected products': 'https://fresha.crowdin.com/editor/25/21698/en-/2223?view=comfortable&filter=basic&value=1#1499986',
   'selected services': 'https://fresha.crowdin.com/editor/25/21698/en-/2223?view=comfortable&filter=basic&value=1#1499988',
   'who booked': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3728896',
-  'who did not return in the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723228',
+  'Who did not return in the last': 'https://fresha.crowdin.com/editor/25/58510/en-/2223?view=comfortable&filter=basic&value=1#3723228',
   'who spent': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729096',
   'within the last': 'https://fresha.crowdin.com/editor/25/58614/en-/2223?view=comfortable&filter=basic&value=1#3729142',
 };
@@ -1161,6 +1161,49 @@ const NEW_STRINGS = {
     { text: 'Unit', id: 10903231 },
     { text: 'From', id: 10903233 },
     { text: 'To',   id: 10903235 },
+  ],
+  'Segment rule': [
+    { text: '%{entity} %{time}',                                              id: 13816667, file: 136837 },
+    { text: 'added %{time}',                                                  id: 13816679, file: 136837 },
+    { text: 'with %{entity}',                                                 id: 13816685, file: 136837 },
+    { text: 'with %{entity} %{time}',                                        id: 13816687, file: 136837 },
+    { text: 'with %{field}',                                                  id: 13816689, file: 136837 },
+    { text: 'with %{value} or more %{entity} %{time}',                       id: 13816691, file: 136837 },
+    { text: 'with between %{from} and %{to} %{entity} %{time}',              id: 13816693, file: 136837 },
+    { text: 'with birthdays %{time}',                                         id: 13816695, file: 136837 },
+    { text: 'with exactly %{value} %{entity} %{time}',                       id: 13816697, file: 136837 },
+    { text: 'with fewer than %{value} %{entity} %{time}',                    id: 13816699, file: 136837 },
+    { text: 'with more than %{value} %{entity} %{time}',                     id: 13816703, file: 136837 },
+    { text: 'with no %{entity}',                                              id: 13816705, file: 136837 },
+    { text: 'with no %{entity} %{time}',                                     id: 13816707, file: 136837 },
+    { text: 'without %{field}',                                               id: 13816709, file: 136837 },
+    { text: 'with %{amount} in %{entity} %{time}',                           id: 13880727, file: 136837 },
+    { text: 'with %{amount} or less in %{entity} %{time}',                   id: 13880729, file: 136837 },
+    { text: 'with %{amount} or more in %{entity} %{time}',                   id: 13880731, file: 136837 },
+    { text: 'with %{value} or fewer %{entity} %{time}',                      id: 13880733, file: 136837 },
+    { text: 'with between %{from_amount} and %{to_amount} in %{entity} %{time}', id: 13880735, file: 136837 },
+    { text: 'with exactly %{amount} in %{entity} %{time}',                   id: 13880737, file: 136837 },
+    { text: 'with less than %{amount} in %{entity} %{time}',                 id: 13880739, file: 136837 },
+    { text: 'with more than %{amount} in %{entity} %{time}',                 id: 13880741, file: 136837 },
+    { text: 'with selected %{field}',                                         id: 13991699, file: 136837 },
+    { text: 'without selected %{field}',                                      id: 13991701, file: 136837 },
+    { text: 'whose %{field} contains %{value}',                               id: 14055395, file: 136837 },
+    { text: 'whose %{field} does not contain %{value}',                        id: 14055397, file: 136837 },
+    { text: 'whose %{field} is %{time}',                                      id: 14055399, file: 136837 },
+    { text: 'whose %{field} is %{value}',                                     id: 14055401, file: 136837 },
+    { text: 'whose %{field} is %{value} or less',                             id: 14055403, file: 136837 },
+    { text: 'whose %{field} is %{value} or more',                             id: 14055405, file: 136837 },
+    { text: 'whose %{field} is between %{from} and %{to}',                   id: 14055407, file: 136837 },
+    { text: 'whose %{field} is in the future',                                id: 14055409, file: 136837 },
+    { text: 'whose %{field} is in the past',                                  id: 14055411, file: 136837 },
+    { text: 'whose %{field} is less than %{value}',                           id: 14055413, file: 136837 },
+    { text: 'whose %{field} is more than %{value}',                           id: 14055415, file: 136837 },
+    { text: 'whose %{field} is not %{value}',                                 id: 14055417, file: 136837 },
+    { text: 'whose %{field} is on %{value}',                                  id: 14055419, file: 136837 },
+    { text: 'with any %{field}',                                              id: 14055421, file: 136837 },
+    { text: 'Restore the original segment rules',                             id: 13881823, file: 162763 },
+    { text: 'Segment rules are already using the original settings',          id: 13881825, file: 162763 },
+    { text: 'Original segment rules restored',                                id: 13881827, file: 162763 },
   ],
 };
 
@@ -1213,8 +1256,8 @@ const SEG_VALUES = {
     { label: "in the last %{dayCount} days", hasVar: true },
     { label: "in the last week", hasVar: false },
     { label: "in the last %{weekCount} weeks", hasVar: true },
-    { label: "in the last month", hasVar: false },
     { label: "in the last %{monthCount} months", hasVar: true },
+    { label: "in the last %{monthsCount} months", hasVar: true },
     { label: "between %{dateFrom} and %{dateTo}", hasVar: true },
     { label: "in the next day", hasVar: false },
     { label: "in the next %{dayCount} days", hasVar: true },
@@ -1248,8 +1291,8 @@ const SEG_VALUES = {
     { label: "%{salesCount} or more sales", hasVar: true },
   ],
   "%{notReturnedInTimeSegment}": [
-    { label: "in the last month", hasVar: false },
     { label: "in the last %{monthCount} months", hasVar: true },
+    { label: "in the last %{monthsCount} months", hasVar: true },
   ],
   "%{previouslyBookedOnlineSegment}": [
     { label: "previously booked an appointment online", hasVar: false },
@@ -1265,6 +1308,7 @@ const SEG_VALUES = {
 
 const NEW_TEMPLATES = [
   { name: 'Range input labels',  color: '#d97706', group: 'Segment range input label',  note: 'Used as field labels inside numeric or date range inputs. Not part of the sentence — these are form labels.' },
+  { name: 'Segment rules',       color: '#e53935', group: 'Segment rule',               note: 'Composable rule templates used after "Clients with" to build custom segment sentences. Each rule contains variable placeholders (%{entity}, %{field}, %{value}, %{time}, %{amount}) that get replaced with specific values at runtime.' },
 ];
 
 const TEMPLATES = [
@@ -1445,6 +1489,49 @@ const CUSTOM_CROWDIN = {
   'months':                 'https://fresha.crowdin.com/editor/25/136837/en-/2223?view=comfortable#13991713',
   'week':                   'https://fresha.crowdin.com/editor/25/136837/en-/2223?view=comfortable#13991715',
   'weeks':                  'https://fresha.crowdin.com/editor/25/136837/en-/2223?view=comfortable#13991717',
+  // Segment rules (composable rule templates — file 136837)
+  '%{entity} %{time}':                                             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816667',
+  'added %{time}':                                                 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816679',
+  'with %{entity}':                                                'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816685',
+  'with %{entity} %{time}':                                       'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816687',
+  'with %{field}':                                                 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816689',
+  'with %{value} or more %{entity} %{time}':                      'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816691',
+  'with between %{from} and %{to} %{entity} %{time}':             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816693',
+  'with birthdays %{time}':                                        'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816695',
+  'with exactly %{value} %{entity} %{time}':                      'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816697',
+  'with fewer than %{value} %{entity} %{time}':                   'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816699',
+  'with more than %{value} %{entity} %{time}':                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816703',
+  'with no %{entity}':                                             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816705',
+  'with no %{entity} %{time}':                                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816707',
+  'without %{field}':                                              'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13816709',
+  'with %{amount} in %{entity} %{time}':                          'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880727',
+  'with %{amount} or less in %{entity} %{time}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880729',
+  'with %{amount} or more in %{entity} %{time}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880731',
+  'with %{value} or fewer %{entity} %{time}':                     'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880733',
+  'with between %{from_amount} and %{to_amount} in %{entity} %{time}': 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880735',
+  'with exactly %{amount} in %{entity} %{time}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880737',
+  'with less than %{amount} in %{entity} %{time}':                'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880739',
+  'with more than %{amount} in %{entity} %{time}':                'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13880741',
+  'with selected %{field}':                                        'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13991699',
+  'without selected %{field}':                                     'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#13991701',
+  'whose %{field} contains %{value}':                              'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055395',
+  'whose %{field} does not contain %{value}':                      'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055397',
+  'whose %{field} is %{time}':                                     'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055399',
+  'whose %{field} is %{value}':                                    'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055401',
+  'whose %{field} is %{value} or less':                            'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055403',
+  'whose %{field} is %{value} or more':                            'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055405',
+  'whose %{field} is between %{from} and %{to}':                  'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055407',
+  'whose %{field} is in the future':                               'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055409',
+  'whose %{field} is in the past':                                 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055411',
+  'whose %{field} is less than %{value}':                          'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055413',
+  'whose %{field} is more than %{value}':                          'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055415',
+  'whose %{field} is not %{value}':                                'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055417',
+  'whose %{field} is on %{value}':                                 'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055419',
+  'with any %{field}':                                             'https://fresha.crowdin.com/editor/25/136837/en-?view=comfortable#14055421',
+  // Segment rule UI strings (file 162763)
+  'Restore the original segment rules':                            'https://fresha.crowdin.com/editor/25/162763/en-?view=comfortable#13881823',
+  'Segment rules are already using the original settings':         'https://fresha.crowdin.com/editor/25/162763/en-?view=comfortable#13881825',
+  'Original segment rules restored':                               'https://fresha.crowdin.com/editor/25/162763/en-?view=comfortable#13881827',
 };
 
 const ALL_CROWDIN = (label) =>
@@ -1771,7 +1858,67 @@ function renderTemplate(tmpl) {
 }
 
 function renderBreakdown(tmpl) {
-  document.getElementById('string-rows').innerHTML = tmpl.vars.map(v => {
+  let html = '';
+
+  // 1. Full template string card
+  const tmplUrl = ALL_CROWDIN(tmpl.template);
+  const tmplFallback = 'https://fresha.crowdin.com/u/projects/25';
+  html += `
+    <div class="string-card">
+      <div class="string-card-bar" style="background:${tmpl.color}"></div>
+      <div class="string-card-body">
+        <span class="string-card-var" style="color:${tmpl.color}">Full template</span>
+        <span class="string-card-value" style="font-size:var(--font-size-xs)">${tmpl.template}</span>
+        <span class="string-card-note">The complete sentence template string in Crowdin.</span>
+      </div>
+      <div class="string-card-actions">
+        ${tmplUrl !== tmplFallback
+          ? `<a href="${tmplUrl}" target="_blank"
+               class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
+               data-visual="primary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)">
+               Open in Crowdin ↗
+             </a>`
+          : `<span style="font-size:var(--font-size-xs);color:var(--foreground-ghost)">No direct link</span>`
+        }
+        <button class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
+          data-visual="secondary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)"
+          onclick="copyStr('${tmpl.template.replace(/'/g,"\\'")}', this)">Copy</button>
+      </div>
+    </div>`;
+
+  // 2. Static text fragment cards (the white text between variables)
+  const staticParts = tmpl.template.split(/(%\{[^}]+\})/g).filter(p => !/%\{[^}]+\}/.test(p) && p.trim());
+  const seenStatic = new Set();
+  staticParts.forEach(part => {
+    const text = part.trim();
+    if (!text || seenStatic.has(text)) return;
+    seenStatic.add(text);
+    const url = ALL_CROWDIN(text);
+    html += `
+      <div class="string-card">
+        <div class="string-card-bar" style="background:var(--foreground-ghost)"></div>
+        <div class="string-card-body">
+          <span class="string-card-var" style="color:var(--foreground-neutral-faded)">Static text</span>
+          <span class="string-card-value">${text}</span>
+        </div>
+        <div class="string-card-actions">
+          ${url !== 'https://fresha.crowdin.com/u/projects/25'
+            ? `<a href="${url}" target="_blank"
+                 class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-accent fg-on-accent border-color-transparent"
+                 data-visual="primary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)">
+                 Open in Crowdin ↗
+               </a>`
+            : `<span style="font-size:var(--font-size-xs);color:var(--foreground-ghost)">No direct link</span>`
+          }
+          <button class="ion-button-base ion-btn rounded-s px-150 py-75 text-xs gap-50 bg-transparent fg-neutral border-color-neutral"
+            data-visual="secondary" style="border-radius:var(--radius-s);line-height:1.3;height:auto;min-height:var(--size-400)"
+            onclick="copyStr('${text.replace(/'/g,"\\'")}', this)">Copy</button>
+        </div>
+      </div>`;
+  });
+
+  // 3. Variable value cards (existing behavior)
+  html += tmpl.vars.map(v => {
     const col = SEG_COLORS[v] || { bg:'#333',text:'#ccc',bar:'#888' };
     const val = (SEG_VALUES[v]||[])[selections[v]||0];
     if (!val) return '';
@@ -1802,6 +1949,8 @@ function renderBreakdown(tmpl) {
         </div>
       </div>`;
   }).join('');
+
+  document.getElementById('string-rows').innerHTML = html;
 }
 
 function renderComboCount(tmpl) {
